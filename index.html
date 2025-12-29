@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mango Legal | Terms & Framework</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind for Layout Utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-blur: blur(24px);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.65);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080809;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        /* --- Background Animation --- */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #080809;
+            overflow: hidden;
+        }
+
+        .glow-spot {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 75%);
+            filter: blur(80px);
+            pointer-events: none;
+            animation: drift 30s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(-5vw, -5vh) scale(1); }
+            100% { transform: translate(15vw, 15vh) scale(1.3); }
+        }
+
+        /* --- Glassmorphism Components --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 12px 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* --- Navigation Sidebar --- */
+        .nav-sidebar {
+            position: sticky;
+            top: 3rem;
+            height: calc(100vh - 6rem);
+            overflow-y: auto;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+        .nav-sidebar::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+        .nav-item {
+            padding: 12px 18px;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.88rem;
+            display: block;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Content Styling --- */
+        .section-card {
+            margin-bottom: 3rem;
+            padding: 3rem;
+        }
+
+        .plain-english-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 1.25rem 1.75rem;
+            margin: 2rem 0;
+            border-radius: 4px 16px 16px 4px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.04);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-tag {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.5) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .section-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-canvas">
+        <div class="glow-spot" style="width: 50vw; height: 50vw; top: -20vh; left: -10vw;"></div>
+        <div class="glow-spot" style="width: 40vw; height: 40vw; bottom: -10vh; right: -10vw; animation-delay: -7s;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pt-24 pb-12">
+        <!-- Minimal Header -->
+        <header class="mb-24 flex flex-col md:flex-row md:items-center justify-between gap-12">
+            <div>
+                <h1 class="hero-title mb-2">Mango Legal</h1>
+                <div class="flex items-center gap-4 mt-4">
+                    <span class="status-tag">Framework 4.5</span>
+                    <span class="status-tag">Protection Active</span>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <a href="#contact" class="glass-button">
+                    <i data-lucide="shield" class="w-4 h-4"></i> Secure Contact
+                </a>
+            </div>
+        </header>
+
+        <div class="grid lg:grid-cols-[260px_1fr] gap-16">
+            <!-- Navigation -->
+            <aside>
+                <nav class="nav-sidebar">
+                    <h4 class="text-[10px] uppercase tracking-[0.2em] text-white/30 font-bold mb-8 px-4">Sections</h4>
+                    <a href="#sec1" class="nav-item">01. Implicit Acceptance</a>
+                    <a href="#sec2" class="nav-item">02. Safety Safeguards</a>
+                    <a href="#sec3" class="nav-item">03. Verification Protocol</a>
+                    <a href="#sec4" class="nav-item">04. Service Boundaries</a>
+                    <a href="#sec5" class="nav-item">05. IP Architecture</a>
+                    <a href="#sec6" class="nav-item">06. Usage Restrictions</a>
+                    <a href="#sec7" class="nav-item">07. Minor Protection</a>
+                    <a href="#sec8" class="nav-item">08. Data Lifecycle</a>
+                    <a href="#sec9" class="nav-item">09. Liability Fortress</a>
+                    <a href="#sec10" class="nav-item">10. Indemnity Clause</a>
+                    <a href="#sec11" class="nav-item">11. Third-Party Volatility</a>
+                    <a href="#sec12" class="nav-item">12. Uptime Disclaimer</a>
+                    <a href="#sec13" class="nav-item">13. Resolution Path</a>
+                    <a href="#sec14" class="nav-item">14. Alpha/Beta Risk</a>
+                    <a href="#sec15" class="nav-item">15. No Affiliation</a>
+                    <a href="#sec16" class="nav-item">16. Creative Feedback</a>
+                    <a href="#sec17" class="nav-item">17. Abuse Nullification</a>
+                    <a href="#sec18" class="nav-item">18. Privacy Compliance</a>
+                    <a href="#sec19" class="nav-item">19. External Events</a>
+                    <a href="#sec20" class="nav-item">20. Full Integration</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main>
+                <!-- Section 1 -->
+                <section id="sec1" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="check-circle" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">01. Implicit Acceptance</h2>
+                    </div>
+                    <p class="text-white/60 text-lg">Interaction with any asset produced by Mango—including bots, dashboard code, or logic frameworks—constitutes a legally binding acceptance of this document. This agreement is automatically activated upon the first point of contact between a User's system and the Developer's system.</p>
+                    <div class="plain-english-box">
+                        <strong>Summary:</strong> Using my code means you agree to these rules. If you don't agree, stop using everything immediately.
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="sec3" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="fingerprint" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">03. Verification Protocol</h2>
+                    </div>
+                    <p class="text-white/60 mb-6">Security is the primary directive. Mango will never operate outside of standard API scopes. We will never request sensitive credentials from Users or Server Staff.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Security Action</th>
+                                <th>Protocol Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Password Requests</td>
+                                <td>Forbidden. Any request for a password is a scam.</td>
+                            </tr>
+                            <tr>
+                                <td>Payment Processing</td>
+                                <td>Non-existent. Services are 100% volunteer-based.</td>
+                            </tr>
+                            <tr>
+                                <td>Remote Access</td>
+                                <td>Unauthorized. Logic is shared via files, never direct control.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Section 6 -->
+                <section id="sec6" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="ban" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">06. Usage Restrictions</h2>
+                    </div>
+                    <p class="text-white/60 mb-8">To maintain the safety and integrity of the developer lab, the following activities are strictly prohibited and will result in a permanent blacklisting.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="font-semibold mb-2">✅ Authorized Use</h4>
+                            <p class="text-sm text-white/40">Healthy community management, automation for non-harmful tasks, educational exploration of code.</p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                            <h4 class="font-semibold mb-2 text-red-400/80">❌ Unauthorized Use</h4>
+                            <p class="text-sm text-white/40">Phishing, harassment, nitro-scams, bypassing platform safety terms, or selling free code.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 8 -->
+                <section id="sec8" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="cpu" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">08. Data Lifecycle</h2>
+                    </div>
+                    <p class="text-white/60 mb-8">We follow a strict "data-minimization" policy. Only identifiers essential for bot functionality are processed.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Reasoning</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Discord ID</strong></td>
+                                <td>State persistence (XP, settings)</td>
+                                <td>Until server exit</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Server ID</strong></td>
+                                <td>Configuration storage</td>
+                                <td>Permanent until bot kick</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Logic Logs</strong></td>
+                                <td>Bug identification</td>
+                                <td>Rolling 14-day window</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Section 9 -->
+                <section id="sec9" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="shield-alert" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">09. Liability Fortress</h2>
+                    </div>
+                    <p class="text-white/60 mb-6">Mango provides digital assets as a volunteer contributor. As such, the Developer accepts **NO LIABILITY** for any outcomes resulting from the use of the code. This includes:</p>
+                    <ul class="space-y-3 text-white/50 text-sm list-disc pl-6">
+                        <li>Third-party platform account terminations (bans).</li>
+                        <li>Loss of community data or server configurations.</li>
+                        <li>Financial or reputational loss from downtime.</li>
+                        <li>Security breaches caused by staff negligence or token leaks.</li>
+                    </ul>
+                    <div class="plain-english-box">
+                        <strong>Summary:</strong> You use this for free and at your own risk. If your server breaks or gets banned, I am not responsible.
+                    </div>
+                </section>
+
+                <!-- Section 17 -->
+                <section id="sec17" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="zap-off" class="w-7 h-7 text-white/40"></i>
+                        <h2 class="text-3xl font-medium">17. Abuse Nullification</h2>
+                    </div>
+                    <p class="text-white/60">Mango reserves the absolute right to remotely deactivate any instance of the software if it is found to be used in violation of safety or ethical standards. This is a "safety kill-switch" designed to protect the developer and the wider community.</p>
+                </section>
+
+                <!-- Footer -->
+                <footer id="contact" class="glass-panel p-16 mt-16 text-center border-t border-white/5">
+                    <div class="mb-10">
+                        <i data-lucide="anchor" class="w-12 h-12 text-white/10 mx-auto mb-6"></i>
+                        <h3 class="text-3xl mb-3">Community First</h3>
+                        <p class="text-white/40 max-w-xl mx-auto">This framework ensures that free, high-quality development remains a safe reality for everyone involved. Respect the boundaries, and the code stays free.</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <button class="glass-button">
+                            <i data-lucide="hash" class="w-4 h-4"></i> Discord: [Your Tag]
+                        </button>
+                        <button class="glass-button">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Developer Email
+                        </button>
+                    </div>
+                    <p class="mt-12 text-[10px] uppercase tracking-[0.3em] text-white/20">© 2025 Mango Legal • All Rights Reserved</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Subtle Particle Interaction
+        const spots = document.querySelectorAll('.glow-spot');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            
+            spots.forEach((spot, index) => {
+                const modifier = (index + 1) * 0.5;
+                spot.style.transform = `translate(${x * modifier}px, ${y * modifier}px)`;
+            });
+        });
+
+        // Navigation Highlight/Scroll
+        document.querySelectorAll('.nav-item').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
