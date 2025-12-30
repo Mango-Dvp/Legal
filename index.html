@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mango Legal | Terms & Framework</title>
+    <title>Mango legal | Information and terms</title>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Inter Font -->
@@ -12,16 +12,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-bg: rgba(10, 30, 15, 0.15);
+            --glass-border: rgba(100, 255, 150, 0.1);
             --glass-blur: blur(24px);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.65);
+            --accent-green: #4ade80;
+            --text-primary: #f0fdf4;
+            --text-secondary: rgba(240, 253, 244, 0.65);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #080809;
+            background-color: #040805;
             color: var(--text-primary);
             overflow-x: hidden;
             margin: 0;
@@ -37,22 +38,22 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: #080809;
+            background: radial-gradient(circle at top right, #08150a, #040805);
             overflow: hidden;
         }
 
         .glow-spot {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 75%);
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, transparent 75%);
             filter: blur(80px);
             pointer-events: none;
-            animation: drift 30s infinite alternate ease-in-out;
+            animation: drift 35s infinite alternate ease-in-out;
         }
 
         @keyframes drift {
-            0% { transform: translate(-5vw, -5vh) scale(1); }
-            100% { transform: translate(15vw, 15vh) scale(1.3); }
+            0% { transform: translate(-10vw, -10vh) scale(1); }
+            100% { transform: translate(20vw, 20vh) scale(1.4); }
         }
 
         /* --- Glassmorphism Components --- */
@@ -61,13 +62,13 @@
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border);
-            border-radius: 28px;
+            border-radius: 24px;
         }
 
         .glass-button {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(74, 222, 128, 0.05);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(74, 222, 128, 0.15);
             border-radius: 14px;
             padding: 12px 24px;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -75,13 +76,13 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            color: var(--text-primary);
+            color: var(--accent-green);
             font-size: 0.95rem;
         }
 
         .glass-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(74, 222, 128, 0.12);
+            border-color: rgba(74, 222, 128, 0.3);
             transform: translateY(-2px);
         }
 
@@ -91,9 +92,9 @@
             top: 3rem;
             height: calc(100vh - 6rem);
             overflow-y: auto;
-            scrollbar-width: none; /* Hide scrollbar Firefox */
+            scrollbar-width: none;
         }
-        .nav-sidebar::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+        .nav-sidebar::-webkit-scrollbar { display: none; }
 
         .nav-item {
             padding: 12px 18px;
@@ -107,26 +108,26 @@
             border: 1px solid transparent;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.05);
+        .nav-item:hover, .nav-item.active {
+            background: rgba(74, 222, 128, 0.08);
+            color: var(--accent-green);
+            border-color: rgba(74, 222, 128, 0.1);
         }
 
         /* --- Content Styling --- */
         .section-card {
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             padding: 3rem;
         }
 
         .plain-english-box {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(74, 222, 128, 0.03);
+            border-left: 3px solid var(--accent-green);
             padding: 1.25rem 1.75rem;
             margin: 2rem 0;
             border-radius: 4px 16px 16px 4px;
             font-size: 0.92rem;
-            color: var(--text-secondary);
+            color: var(--accent-green);
         }
 
         table {
@@ -147,36 +148,47 @@
         }
 
         th {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(74, 222, 128, 0.05);
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--accent-green);
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .status-tag {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(74, 222, 128, 0.08);
+            border: 1px solid rgba(74, 222, 128, 0.2);
             padding: 6px 14px;
             border-radius: 100px;
             font-size: 0.72rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.8);
+            text-transform: none;
+            letter-spacing: normal;
+            color: var(--accent-green);
         }
 
         .hero-title {
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: 600;
             letter-spacing: -0.04em;
-            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.5) 100%);
+            background: linear-gradient(180deg, #FFFFFF 0%, #4ade80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 8px;
+            margin-bottom: 1.5rem;
+        }
+
         @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
+            .hero-title { font-size: 2.8rem; }
             .section-card { padding: 1.5rem; }
         }
     </style>
@@ -184,197 +196,329 @@
 <body>
 
     <div class="bg-canvas">
-        <div class="glow-spot" style="width: 50vw; height: 50vw; top: -20vh; left: -10vw;"></div>
-        <div class="glow-spot" style="width: 40vw; height: 40vw; bottom: -10vh; right: -10vw; animation-delay: -7s;"></div>
+        <div class="glow-spot" style="width: 50vw; height: 50vw; top: -10vh; right: -5vw;"></div>
+        <div class="glow-spot" style="width: 40vw; height: 40vw; bottom: 5vh; left: -10vw; animation-delay: -5s;"></div>
+        <div class="glow-spot" style="width: 30vw; height: 30vw; top: 30vh; left: 20vw; animation-delay: -15s; background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 pt-24 pb-12">
-        <!-- Minimal Header -->
-        <header class="mb-24 flex flex-col md:flex-row md:items-center justify-between gap-12">
+    <div class="max-w-7xl mx-auto px-6 pt-20 pb-12">
+        <!-- Header -->
+        <header class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12">
             <div>
-                <h1 class="hero-title mb-2">Mango Legal</h1>
-                <div class="flex items-center gap-4 mt-4">
-                    <span class="status-tag">Framework 4.5</span>
-                    <span class="status-tag">Protection Active</span>
+                <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Mango logo" class="logo-img">
+                <h1 class="hero-title mb-2">Mango legal</h1>
+                <div class="flex items-center gap-4 mt-6">
+                    <span class="status-tag">Version 4.5.1</span>
+                    <span class="status-tag">Standard terms</span>
                 </div>
             </div>
             <div class="flex gap-4">
-                <a href="#contact" class="glass-button">
-                    <i data-lucide="shield" class="w-4 h-4"></i> Secure Contact
+                <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Contact info
                 </a>
             </div>
         </header>
 
-        <div class="grid lg:grid-cols-[260px_1fr] gap-16">
-            <!-- Navigation -->
+        <div class="grid lg:grid-cols-[250px_1fr] gap-12">
+            <!-- Side Navigation -->
             <aside>
                 <nav class="nav-sidebar">
-                    <h4 class="text-[10px] uppercase tracking-[0.2em] text-white/30 font-bold mb-8 px-4">Sections</h4>
-                    <a href="#sec1" class="nav-item">01. Implicit Acceptance</a>
-                    <a href="#sec2" class="nav-item">02. Safety Safeguards</a>
-                    <a href="#sec3" class="nav-item">03. Verification Protocol</a>
-                    <a href="#sec4" class="nav-item">04. Service Boundaries</a>
-                    <a href="#sec5" class="nav-item">05. IP Architecture</a>
-                    <a href="#sec6" class="nav-item">06. Usage Restrictions</a>
-                    <a href="#sec7" class="nav-item">07. Minor Protection</a>
-                    <a href="#sec8" class="nav-item">08. Data Lifecycle</a>
-                    <a href="#sec9" class="nav-item">09. Liability Fortress</a>
-                    <a href="#sec10" class="nav-item">10. Indemnity Clause</a>
-                    <a href="#sec11" class="nav-item">11. Third-Party Volatility</a>
-                    <a href="#sec12" class="nav-item">12. Uptime Disclaimer</a>
-                    <a href="#sec13" class="nav-item">13. Resolution Path</a>
-                    <a href="#sec14" class="nav-item">14. Alpha/Beta Risk</a>
-                    <a href="#sec15" class="nav-item">15. No Affiliation</a>
-                    <a href="#sec16" class="nav-item">16. Creative Feedback</a>
-                    <a href="#sec17" class="nav-item">17. Abuse Nullification</a>
-                    <a href="#sec18" class="nav-item">18. Privacy Compliance</a>
-                    <a href="#sec19" class="nav-item">19. External Events</a>
-                    <a href="#sec20" class="nav-item">20. Full Integration</a>
+                    <h4 class="text-[11px] text-green-400/40 font-bold mb-8 px-4">Sections</h4>
+                    <a href="#sec1" class="nav-item">01. Terms of use</a>
+                    <a href="#sec2" class="nav-item">02. Developer information</a>
+                    <a href="#sec3" class="nav-item">03. Security information</a>
+                    <a href="#sec4" class="nav-item">04. Service description</a>
+                    <a href="#sec5" class="nav-item">05. Ownership</a>
+                    <a href="#sec6" class="nav-item">06. Rules</a>
+                    <a href="#sec7" class="nav-item">07. Safety for all ages</a>
+                    <a href="#sec8" class="nav-item">08. Data handling</a>
+                    <a href="#sec9" class="nav-item">09. Responsibility</a>
+                    <a href="#sec10" class="nav-item">10. Use of software</a>
+                    <a href="#sec11" class="nav-item">11. External changes</a>
+                    <a href="#sec12" class="nav-item">12. Uptime</a>
+                    <a href="#sec13" class="nav-item">13. Problem resolution</a>
+                    <a href="#sec14" class="nav-item">14. Beta testing</a>
+                    <a href="#sec15" class="nav-item">15. Affiliations</a>
+                    <a href="#sec16" class="nav-item">16. Feedback</a>
+                    <a href="#sec17" class="nav-item">17. Misuse of service</a>
+                    <a href="#sec18" class="nav-item">18. Data deletion</a>
+                    <a href="#sec19" class="nav-item">19. External events</a>
+                    <a href="#sec20" class="nav-item">20. Full agreement</a>
                 </nav>
             </aside>
 
-            <!-- Main Content -->
+            <!-- Content Area -->
             <main>
-                <!-- Section 1 -->
+                <!-- Section 01 -->
                 <section id="sec1" class="glass-panel section-card">
                     <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="check-circle" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">01. Implicit Acceptance</h2>
+                        <i data-lucide="info" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">01. Terms of use</h2>
                     </div>
-                    <p class="text-white/60 text-lg">Interaction with any asset produced by Mango—including bots, dashboard code, or logic frameworks—constitutes a legally binding acceptance of this document. This agreement is automatically activated upon the first point of contact between a User's system and the Developer's system.</p>
+                    <p class="text-white/70 text-lg">By using the tools provided by Mango, such as bots or code, you agree to the terms listed on this page. If you do not agree with these terms, you should stop using the tools. Accessing the service implies that you have read the provided information carefully. The terms apply to all visitors and users who access or use the software. We reserve the right to modify these terms as needed to reflect changes in our services. Continued use of the tools after such modifications constitutes your consent to the updated terms.</p>
                     <div class="plain-english-box">
-                        <strong>Summary:</strong> Using my code means you agree to these rules. If you don't agree, stop using everything immediately.
+                        This section explains that using the software counts as agreeing to these rules.
                     </div>
                 </section>
 
-                <!-- Section 3 -->
+                <!-- Section 02 -->
+                <section id="sec2" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="user" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">02. Developer information</h2>
+                    </div>
+                    <p class="text-white/70">The developer is a student working on these tools in their spare time. This project is a volunteer effort and should be treated as a hobby rather than a commercial service. All interactions should remain respectful and appropriate for the developer's status as a minor. The developer aims to provide helpful tools while learning more about software architecture. No professional support staff are employed to manage these projects. Users are encouraged to maintain a friendly and constructive dialogue during any interactions.</p>
+                </section>
+
+                <!-- Section 03 -->
                 <section id="sec3" class="glass-panel section-card">
                     <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="fingerprint" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">03. Verification Protocol</h2>
+                        <i data-lucide="shield" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">03. Security information</h2>
                     </div>
-                    <p class="text-white/60 mb-6">Security is the primary directive. Mango will never operate outside of standard API scopes. We will never request sensitive credentials from Users or Server Staff.</p>
+                    <p class="text-white/70 mb-6">Mango does not ask for passwords or private login details from its users. We use standard platform permissions to operate our bots and systems effectively. Security is a priority for the developer when writing and deploying code. We aim to keep all user data protected from unauthorized access through secure practices. Users should never share their bot tokens or sensitive configuration files with anyone. If you notice any suspicious activity, please report it through the official contact channels.</p>
                     <table>
                         <thead>
                             <tr>
-                                <th>Security Action</th>
-                                <th>Protocol Detail</th>
+                                <th>Action</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Password Requests</td>
-                                <td>Forbidden. Any request for a password is a scam.</td>
+                                <td>Passwords</td>
+                                <td>We never ask for them.</td>
                             </tr>
                             <tr>
-                                <td>Payment Processing</td>
-                                <td>Non-existent. Services are 100% volunteer-based.</td>
+                                <td>Payments</td>
+                                <td>Everything is free of charge.</td>
                             </tr>
                             <tr>
-                                <td>Remote Access</td>
-                                <td>Unauthorized. Logic is shared via files, never direct control.</td>
+                                <td>Account access</td>
+                                <td>We do not request direct access to your devices.</td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
 
-                <!-- Section 6 -->
+                <!-- Section 04 -->
+                <section id="sec4" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="box" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">04. Service description</h2>
+                    </div>
+                    <p class="text-white/70">The software is provided for community use without any cost to the users. It is a hobby project and does not come with specific service guarantees or support contracts. The features available are subject to change as the project evolves over time. Our goal is to create automated tools that make server management easier for everyone. There is no formal agreement regarding the speed of feature implementation or bug fixing. The service is provided purely for educational and community-oriented purposes.</p>
+                </section>
+
+                <!-- Section 05 -->
+                <section id="sec5" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="code" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">05. Ownership</h2>
+                    </div>
+                    <p class="text-white/70">Mango owns the code and the specific logic used to build these tools. You are allowed to use the tools as intended for your personal or server needs. However, you do not own the underlying software or the rights to redistribute it. All intellectual property remains the sole property of the developer who created it. Copying large portions of the code without permission is not allowed under these terms. This ownership ensures that the developer can continue to manage the project independently.</p>
+                </section>
+
+                <!-- Section 06 -->
                 <section id="sec6" class="glass-panel section-card">
                     <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="ban" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">06. Usage Restrictions</h2>
+                        <i data-lucide="check" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">06. Rules</h2>
                     </div>
-                    <p class="text-white/60 mb-8">To maintain the safety and integrity of the developer lab, the following activities are strictly prohibited and will result in a permanent blacklisting.</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                            <h4 class="font-semibold mb-2">✅ Authorized Use</h4>
-                            <p class="text-sm text-white/40">Healthy community management, automation for non-harmful tasks, educational exploration of code.</p>
-                        </div>
-                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                            <h4 class="font-semibold mb-2 text-red-400/80">❌ Unauthorized Use</h4>
-                            <p class="text-sm text-white/40">Phishing, harassment, nitro-scams, bypassing platform safety terms, or selling free code.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 8 -->
-                <section id="sec8" class="glass-panel section-card">
-                    <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="cpu" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">08. Data Lifecycle</h2>
-                    </div>
-                    <p class="text-white/60 mb-8">We follow a strict "data-minimization" policy. Only identifiers essential for bot functionality are processed.</p>
+                    <p class="text-white/70">There are specific rules that all users must follow when using our services. Using the tools to automate helpful tasks on your server is highly encouraged. However, using the tools for harassment or spamming is strictly forbidden. Users must comply with the terms of service of any third-party platforms used. It is not allowed to sell the software or charge others for access to it. We expect all community members to act responsibly and treat others with kindness.</p>
                     <table>
                         <thead>
                             <tr>
-                                <th>Parameter</th>
-                                <th>Reasoning</th>
-                                <th>Duration</th>
+                                <th>Allowed</th>
+                                <th>Not allowed</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Discord ID</strong></td>
-                                <td>State persistence (XP, settings)</td>
-                                <td>Until server exit</td>
+                                <td>Managing your server</td>
+                                <td>Spamming or harassment</td>
                             </tr>
                             <tr>
-                                <td><strong>Server ID</strong></td>
-                                <td>Configuration storage</td>
-                                <td>Permanent until bot kick</td>
+                                <td>Customizing settings</td>
+                                <td>Tricking other users</td>
                             </tr>
                             <tr>
-                                <td><strong>Logic Logs</strong></td>
-                                <td>Bug identification</td>
-                                <td>Rolling 14-day window</td>
+                                <td>General automation</td>
+                                <td>Breaking platform rules</td>
+                            </tr>
+                            <tr>
+                                <td>Personal use</td>
+                                <td>Selling the free code</td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
 
-                <!-- Section 9 -->
+                <!-- Section 07 -->
+                <section id="sec7" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="smile" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">07. Safety for all ages</h2>
+                    </div>
+                    <p class="text-white/70">The tools are designed to be safe for everyone to use regardless of their age. We do not include any features related to gambling, mature content, or illegal activities. Our priority is to create a clean and healthy environment for all users. The developer avoids any topics that could be considered harmful or inappropriate for minors. We aim to keep our communication and features as simple and helpful as possible. This commitment to safety helps maintain a positive community for all developers and users.</p>
+                </section>
+
+                <!-- Section 08 -->
+                <section id="sec8" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="database" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">08. Data handling</h2>
+                    </div>
+                    <p class="text-white/70 mb-6">We only store information that is absolutely necessary for the tools to function correctly. This typically includes platform identifiers like user IDs or server IDs to save your settings. We do not collect personal identifying information such as real names or addresses. All data is handled with care to ensure user privacy is maintained at all times. Data is not sold or shared with third-party marketing companies for any reason. We strive to be transparent about what we collect and how it is used.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Reason</th>
+                                <th>Retention</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>User identifiers</td>
+                                <td>To save your settings</td>
+                                <td>Until you leave</td>
+                            </tr>
+                            <tr>
+                                <td>Server identifiers</td>
+                                <td>To remember preferences</td>
+                                <td>While the bot is active</td>
+                            </tr>
+                            <tr>
+                                <td>Error logs</td>
+                                <td>To fix issues</td>
+                                <td>14 days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Section 09 -->
                 <section id="sec9" class="glass-panel section-card">
                     <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="shield-alert" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">09. Liability Fortress</h2>
+                        <i data-lucide="alert-triangle" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">09. Responsibility</h2>
                     </div>
-                    <p class="text-white/60 mb-6">Mango provides digital assets as a volunteer contributor. As such, the Developer accepts **NO LIABILITY** for any outcomes resulting from the use of the code. This includes:</p>
-                    <ul class="space-y-3 text-white/50 text-sm list-disc pl-6">
-                        <li>Third-party platform account terminations (bans).</li>
-                        <li>Loss of community data or server configurations.</li>
-                        <li>Financial or reputational loss from downtime.</li>
-                        <li>Security breaches caused by staff negligence or token leaks.</li>
-                    </ul>
-                    <div class="plain-english-box">
-                        <strong>Summary:</strong> You use this for free and at your own risk. If your server breaks or gets banned, I am not responsible.
+                    <p class="text-white/70">The developer is not responsible for any issues that occur while using the software. This includes data loss, account issues, or any problems with your server. Users accept all risks associated with deploying automated tools in their environments. We do not provide insurance or financial protection against software failures. It is the responsibility of the user to maintain backups of their important information. By using the tool, you acknowledge that no legal claims can be made against the developer.</p>
+                </section>
+
+                <!-- Section 10 -->
+                <section id="sec10" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="file-text" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">10. Use of software</h2>
                     </div>
+                    <p class="text-white/70">Users are entirely responsible for how they choose to use the tools. You agree not to hold the developer responsible for actions taken by your server staff. It is important to monitor the bot's activities to ensure it meets your expectations. The developer provides the tool, but the user provides the context and instructions. Any misuse of the tool by a user is the sole responsibility of that individual. Using the software signifies your understanding of these boundaries and responsibilities.</p>
+                </section>
+
+                <!-- Section 11 -->
+                <section id="sec11" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="refresh-cw" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">11. External changes</h2>
+                    </div>
+                    <p class="text-white/70">Platforms like Discord often update their systems and APIs without warning. We are not required to update our tools if an external change causes them to stop working. The developer will attempt to fix issues when possible, but it is not guaranteed. Users should understand that third-party platforms control much of the underlying infrastructure. We are not responsible for delays in updates following a major platform change. This allows the developer to manage the project without the pressure of strict deadlines.</p>
+                </section>
+
+                <!-- Section 12 -->
+                <section id="sec12" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="zap" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">12. Uptime</h2>
+                    </div>
+                    <p class="text-white/70">There is no guarantee that the tools will be online and active 24/7. Outages may occur due to technical issues, server maintenance, or power failures. Since this is a hobby project, uptime is not monitored by a professional team. The developer may take the service offline occasionally to implement new updates. We do not provide compensation for any time the tools are unavailable. Users should have alternative plans in place for when the service is temporarily offline.</p>
+                </section>
+
+                <!-- Section 13 -->
+                <section id="sec13" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="message-square" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">13. Problem resolution</h2>
+                    </div>
+                    <p class="text-white/70">If you have an issue with the tools, please contact the developer directly through our official Discord channels. Please allow up to 30 days for a response to your inquiries as requests are handled manually. The developer handles all support requests individually and as time permits outside of their school schedule. We ask for your patience as we work through any technical problems or questions you may have. Rude or demanding messages will not result in a faster response time during the resolution process. Clear and respectful communication is the best way to get help with any issues you face.</p>
+                </section>
+
+                <!-- Section 14 -->
+                <section id="sec14" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="test-tube" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">14. Beta testing</h2>
+                    </div>
+                    <p class="text-white/70">New features might be experimental and are often released for beta testing. These features can be removed or changed at any time based on feedback. Experimental tools may not work perfectly and could contain minor errors or bugs. We encourage users to report any bugs they find during the testing phase. Using beta features is entirely optional and is done at the user's own risk. This process helps the developer improve the software for the entire community over time.</p>
+                </section>
+
+                <!-- Section 15 -->
+                <section id="sec15" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="help-circle" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">15. Affiliations</h2>
+                    </div>
+                    <p class="text-white/70">This project is not affiliated with or endorsed by Discord, Google, or any other third-party company. We are independent developers who use public APIs provided by these platforms. No official partnership exists between Mango and any large tech corporations. The names and logos of other platforms are the property of their respective owners. We do not represent these companies in any way during our development. This independence allows us to build tools that focus on user needs without corporate interference.</p>
+                </section>
+
+                <!-- Section 16 -->
+                <section id="sec16" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="lightbulb" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">16. Feedback</h2>
+                    </div>
+                    <p class="text-white/70">Suggestions and feedback are welcome from all members of the community. However, providing a suggestion does not grant you ownership of the code created. The developer retains all rights to any features implemented based on user ideas. Feedback helps us understand what features are most important to our users. There is no guarantee that every suggestion will be implemented in the final project. We appreciate the time users take to share their thoughts with us regularly.</p>
                 </section>
 
                 <!-- Section 17 -->
                 <section id="sec17" class="glass-panel section-card">
                     <div class="flex items-center gap-4 mb-8">
-                        <i data-lucide="zap-off" class="w-7 h-7 text-white/40"></i>
-                        <h2 class="text-3xl font-medium">17. Abuse Nullification</h2>
+                        <i data-lucide="user-x" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">17. Misuse of service</h2>
                     </div>
-                    <p class="text-white/60">Mango reserves the absolute right to remotely deactivate any instance of the software if it is found to be used in violation of safety or ethical standards. This is a "safety kill-switch" designed to protect the developer and the wider community.</p>
+                    <p class="text-white/70">We reserve the right to stop providing service to anyone who misuses the tools. Misuse includes using the software to harass others or break platform rules. If a user is found to be acting against our community guidelines, their access may be revoked. This action is necessary to protect the reputation and safety of the project. We aim to maintain a high standard of conduct within our user base. Decisions regarding service revocation are made at the sole discretion of the developer.</p>
+                </section>
+
+                <!-- Section 18 -->
+                <section id="sec18" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="trash" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">18. Data deletion</h2>
+                    </div>
+                    <p class="text-white/70">If you want your data removed from our systems, you can request deletion at any time. We will process your request as quickly as possible once it is received. Deletion usually involves removing all identifiers linked to your account or server. Once the data is deleted, it cannot be recovered by the user or developer. This ensures that you have full control over the information you have shared with the tools. Please use our Discord contact channels to submit a formal data deletion request.</p>
+                </section>
+
+                <!-- Section 19 -->
+                <section id="sec19" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="wind" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">19. External events</h2>
+                    </div>
+                    <p class="text-white/70">We are not responsible for service interruptions caused by events outside of our control. This includes major network outages, server farm issues, or international internet problems. Such events can prevent the tools from communicating with the platforms they serve. We will attempt to restore service as soon as the external situation allows. Users should be aware that global infrastructure is complex and sometimes unreliable. We ask for your understanding during these uncontrollable and unplanned service interruptions.</p>
+                </section>
+
+                <!-- Section 20 -->
+                <section id="sec20" class="glass-panel section-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="book-open" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">20. Full agreement</h2>
+                    </div>
+                    <p class="text-white/70">These terms make up the entire agreement between the user and the developer. If one part of these terms is found to be invalid, the rest of the terms still apply. These terms override any previous verbal or written agreements regarding the software. This document is the final word on the rules and expectations for the project. By using the software, you signify your full agreement with every section listed here. Thank you for reading and understanding our terms and framework.</p>
                 </section>
 
                 <!-- Footer -->
-                <footer id="contact" class="glass-panel p-16 mt-16 text-center border-t border-white/5">
+                <footer id="contact" class="glass-panel p-16 mt-16 text-center">
                     <div class="mb-10">
-                        <i data-lucide="anchor" class="w-12 h-12 text-white/10 mx-auto mb-6"></i>
-                        <h3 class="text-3xl mb-3">Community First</h3>
-                        <p class="text-white/40 max-w-xl mx-auto">This framework ensures that free, high-quality development remains a safe reality for everyone involved. Respect the boundaries, and the code stays free.</p>
+                        <i data-lucide="shield-check" class="w-12 h-12 text-green-400/30 mx-auto mb-6"></i>
+                        <h3 class="text-3xl mb-3">Contact information</h3>
+                        <p class="text-white/40 max-w-xl mx-auto">This page explains how the tools work and the rules for using them.</p>
                     </div>
                     <div class="flex flex-wrap justify-center gap-6">
-                        <button class="glass-button">
-                            <i data-lucide="hash" class="w-4 h-4"></i> Discord: [Your Tag]
-                        </button>
-                        <button class="glass-button">
-                            <i data-lucide="mail" class="w-4 h-4"></i> Developer Email
-                        </button>
+                        <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Discord contact
+                        </a>
                     </div>
-                    <p class="mt-12 text-[10px] uppercase tracking-[0.3em] text-white/20">© 2025 Mango Legal • All Rights Reserved</p>
+                    <p class="mt-12 text-[11px] text-green-400/20">© 2025 Mango legal</p>
                 </footer>
             </main>
         </div>
@@ -384,14 +528,14 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Subtle Particle Interaction
+        // Background Interaction
         const spots = document.querySelectorAll('.glow-spot');
         document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 40;
-            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
             
             spots.forEach((spot, index) => {
-                const modifier = (index + 1) * 0.5;
+                const modifier = (index + 1) * 0.4;
                 spot.style.transform = `translate(${x * modifier}px, ${y * modifier}px)`;
             });
         });
@@ -403,9 +547,28 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     window.scrollTo({
-                        top: target.offsetTop - 120,
+                        top: target.offsetTop - 100,
                         behavior: 'smooth'
                     });
+                }
+            });
+        });
+
+        // Simple active nav detection
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
                 }
             });
         });
