@@ -101,11 +101,45 @@
             transform: translateY(-2px);
         }
 
+        /* --- Search Bar --- */
+        .search-container {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 10px 12px 10px 40px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(74, 222, 128, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            width: 16px;
+            height: 16px;
+        }
+
         /* --- Navigation Sidebar (Tree Style) --- */
         .nav-sidebar {
             position: sticky;
-            top: 3rem;
-            height: calc(100vh - 6rem);
+            top: 2rem;
+            height: calc(100vh - 4rem);
             overflow-y: auto;
             scrollbar-width: none;
             padding-right: 10px;
@@ -178,6 +212,16 @@
             padding: 2.5rem;
         }
 
+        .plain-english-box {
+            background: rgba(74, 222, 128, 0.03);
+            border-left: 2px solid var(--accent-green);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 4px 12px 12px 4px;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+        }
+
         .sub-section {
             margin-top: 2rem;
             padding-top: 1.5rem;
@@ -241,6 +285,13 @@
             font-weight: 600;
         }
 
+        .search-results-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
         @media (max-width: 1024px) {
             .hero-title { font-size: 2.2rem; }
             .section-card { padding: 1.5rem; }
@@ -268,7 +319,7 @@
                 <div class="flex flex-col">
                     <h1 class="hero-title leading-none">Mango legal</h1>
                     <div class="flex items-center gap-3 mt-2">
-                        <span class="status-tag">Version 1.2.1</span>
+                        <span class="status-tag">Version 1.3.0</span>
                         <span class="status-tag">Last updated December 29 2025</span>
                     </div>
                 </div>
@@ -281,17 +332,32 @@
         </header>
 
         <div class="grid lg:grid-cols-[300px_1fr] gap-12">
-            <!-- Sidebar with Tree Navigation -->
+            <!-- Sidebar with Search and Tree Navigation -->
             <aside>
+                <div class="search-container">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search terms..." class="search-input">
+                </div>
+                
                 <nav class="nav-sidebar" id="nav-tree">
-                    <h4 class="text-[10px] text-green-400/40 font-bold mb-6 px-4 uppercase tracking-widest">Legal explorer</h4>
-                    <!-- JS will populate this -->
+                    <h4 class="text-[10px] text-green-400/40 font-bold mb-4 px-4 uppercase tracking-widest">Legal explorer</h4>
+                    <div id="search-results-badge" class="px-4 mb-4 text-[10px] text-accent-green/60 hidden uppercase">Results found: <span id="result-count">0</span></div>
+                    <div id="nav-tree-content">
+                        <!-- JS will populate this -->
+                    </div>
                 </nav>
             </aside>
 
             <!-- Main Content Area -->
             <main id="main-content">
-                <!-- JS will populate this -->
+                <div id="no-results" class="glass-panel p-12 text-center hidden reveal active">
+                    <i data-lucide="search-x" class="w-12 h-12 text-white/10 mx-auto mb-4"></i>
+                    <h3 class="text-xl mb-2">No matching terms found</h3>
+                    <p class="text-white/40">Try searching for keywords like 'data', 'access', or 'security'.</p>
+                </div>
+                <div id="sections-container">
+                    <!-- JS will populate this -->
+                </div>
             </main>
         </div>
     </div>
@@ -335,95 +401,147 @@
             { id: "32", title: "Termination", icon: "user-minus", subs: ["Access removal", "Data purge"] }
         ];
 
-        const mainContent = document.getElementById('main-content');
-        const navTree = document.getElementById('nav-tree');
+        const sectionsContainer = document.getElementById('sections-container');
+        const navTreeContent = document.getElementById('nav-tree-content');
+        const searchInput = document.getElementById('search-input');
+        const resultCountSpan = document.getElementById('result-count');
+        const resultsBadge = document.getElementById('search-results-badge');
+        const noResultsDiv = document.getElementById('no-results');
 
-        legalData.forEach(section => {
-            const group = document.createElement('div');
-            group.className = 'nav-group';
-            group.id = `group-${section.id}`;
-            group.innerHTML = `
-                <button class="nav-item" onclick="toggleGroup('group-${section.id}', '#sec${section.id}')">
-                    <i data-lucide="chevron-right" class="caret"></i>
-                    ${section.id.padStart(2, '0')}. ${section.title}
-                </button>
-                <div class="nav-sub-list">
-                    ${section.subs.map((sub, i) => `<a href="#sec${section.id}_${i+1}" class="nav-sub-item">${section.id}.${i+1} ${sub}</a>`).join('')}
+        function renderUI() {
+            navTreeContent.innerHTML = '';
+            sectionsContainer.innerHTML = '';
+
+            legalData.forEach(section => {
+                // Sidebar item
+                const group = document.createElement('div');
+                group.className = 'nav-group';
+                group.id = `group-${section.id}`;
+                group.innerHTML = `
+                    <button class="nav-item" onclick="toggleGroup('group-${section.id}', '#sec${section.id}')">
+                        <i data-lucide="chevron-right" class="caret"></i>
+                        ${section.id.padStart(2, '0')}. ${section.title}
+                    </button>
+                    <div class="nav-sub-list">
+                        ${section.subs.map((sub, i) => `<a href="#sec${section.id}_${i+1}" class="nav-sub-item">${section.id}.${i+1} ${sub}</a>`).join('')}
+                    </div>
+                `;
+                navTreeContent.appendChild(group);
+
+                // Content section
+                const card = document.createElement('section');
+                card.id = `sec${section.id}`;
+                card.className = 'glass-panel section-card reveal';
+                card.innerHTML = `
+                    <div class="flex items-center gap-4 mb-6">
+                        <i data-lucide="${section.icon}" class="w-7 h-7 text-green-400/60"></i>
+                        <h2 class="text-2xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
+                    </div>
+                    <p class="text-white/70">
+                        Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. 
+                        Users must read and understand all guidelines before interacting with the system or providing any server permissions. 
+                        The terms provided here are standard requirements for all visitors and community managers who utilize these tools. 
+                        No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. 
+                        Compliance with these rules is necessary for the continued availability of the software across all platforms. 
+                        Failure to adhere to these core requirements results in the immediate loss of access to all related services.
+                    </p>
+                    <div id="sec${section.id}_1" class="sub-section">
+                        <span class="sub-title">${section.id}.1 ${section.subs[0]}</span>
+                        <p class="text-sm text-white/60">
+                            Usage of the software signifies a formal agreement with the specific terms outlined in this direct rule. 
+                            Invite actions, dashboard logins, or command executions activate the responsibilities of the user as listed here. 
+                            All interactions are subject to the standards defined under this category to ensure community stability. 
+                            Users represent that they have the required authority to engage with the tools for their specific server. 
+                            The logic and functionality provided are tied to the user's continued following of this requirement. 
+                            Direct adherence to this parameter is a prerequisite for any level of interaction with the developer's work.
+                        </p>
+                    </div>
+                    <div id="sec${section.id}_2" class="sub-section">
+                        <span class="sub-title">${section.id}.2 ${section.subs[1]}</span>
+                        <p class="text-sm text-white/60">
+                            All secondary requirements listed here are active and binding from the first moment of software interaction. 
+                            Users agree to maintain a setup that complies with these additional directives during the entire usage period. 
+                            Updates to the system or platform may require users to adjust their configurations to stay within these rules. 
+                            The directives here provide clarity on user expectations during various server management or social tasks. 
+                            No claims regarding a lack of awareness of these rules will be considered during conduct reviews. 
+                            Continued interaction with the developer's logic confirms the user's agreement with these secondary standards.
+                        </p>
+                    </div>
+                `;
+                sectionsContainer.appendChild(card);
+            });
+
+            lucide.createIcons();
+            observeReveals();
+        }
+
+        function filterContent() {
+            const query = searchInput.value.toLowerCase();
+            let count = 0;
+
+            const sections = document.querySelectorAll('.section-card');
+            const navGroups = document.querySelectorAll('.nav-group');
+
+            sections.forEach((section, index) => {
+                const text = section.innerText.toLowerCase();
+                const isMatch = text.includes(query);
+                
+                if (isMatch) {
+                    section.style.display = 'block';
+                    navGroups[index].style.display = 'block';
+                    count++;
+                } else {
+                    section.style.display = 'none';
+                    navGroups[index].style.display = 'none';
+                }
+            });
+
+            if (query === "") {
+                resultsBadge.classList.add('hidden');
+                noResultsDiv.classList.add('hidden');
+            } else {
+                resultsBadge.classList.remove('hidden');
+                resultCountSpan.innerText = count;
+                if (count === 0) {
+                    noResultsDiv.classList.remove('hidden');
+                } else {
+                    noResultsDiv.classList.add('hidden');
+                }
+            }
+        }
+
+        searchInput.addEventListener('input', filterContent);
+
+        // Add Footer to Main
+        function addFooter() {
+            const footer = document.createElement('footer');
+            footer.id = 'contact';
+            footer.className = 'glass-panel p-12 mt-16 text-center reveal';
+            footer.innerHTML = `
+                <div class="mb-8">
+                    <i data-lucide="shield-check" class="w-10 h-10 text-green-400/30 mx-auto mb-5"></i>
+                    <h3 class="text-2xl mb-2">Legal information</h3>
+                    <p class="text-white/40 max-w-lg mx-auto text-sm">This portal provides clear explanations of software usage and user responsibilities.</p>
                 </div>
+                <div class="flex flex-wrap justify-center gap-5">
+                    <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Discord contact
+                    </a>
+                </div>
+                <p class="mt-10 text-[10px] text-green-400/20 uppercase tracking-[0.2em]">© 2025 Mango legal</p>
             `;
-            navTree.appendChild(group);
+            document.getElementById('main-content').appendChild(footer);
 
-            const card = document.createElement('section');
-            card.id = `sec${section.id}`;
-            card.className = 'glass-panel section-card reveal';
-            card.innerHTML = `
-                <div class="flex items-center gap-4 mb-6">
-                    <i data-lucide="${section.icon}" class="w-7 h-7 text-green-400/60"></i>
-                    <h2 class="text-2xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
-                </div>
-                <p class="text-white/70">
-                    Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. 
-                    Users must read and understand all guidelines before interacting with the system or providing any server permissions. 
-                    The terms provided here are standard requirements for all visitors and community managers who utilize these tools. 
-                    No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. 
-                    Compliance with these rules is necessary for the continued availability of the software across all platforms. 
-                    Failure to adhere to these core requirements results in the immediate loss of access to all related services.
+            const signature = document.createElement('div');
+            signature.className = 'mt-20 pb-12 text-center reveal';
+            signature.innerHTML = `
+                <p class="text-sm font-light tracking-wide text-white/40 italic">
+                    Thanks for being a friend, 
+                    <span class="mango-signature ml-1">Written by Mango</span>
                 </p>
-                <div id="sec${section.id}_1" class="sub-section">
-                    <span class="sub-title">${section.id}.1 ${section.subs[0]}</span>
-                    <p class="text-sm text-white/60">
-                        Usage of the software signifies a formal agreement with the specific terms outlined in this direct rule. 
-                        Invite actions, dashboard logins, or command executions activate the responsibilities of the user as listed here. 
-                        All interactions are subject to the standards defined under this category to ensure community stability. 
-                        Users represent that they have the required authority to engage with the tools for their specific server. 
-                        The logic and functionality provided are tied to the user's continued following of this requirement. 
-                        Direct adherence to this parameter is a prerequisite for any level of interaction with the developer's work.
-                    </p>
-                </div>
-                <div id="sec${section.id}_2" class="sub-section">
-                    <span class="sub-title">${section.id}.2 ${section.subs[1]}</span>
-                    <p class="text-sm text-white/60">
-                        All secondary requirements listed here are active and binding from the first moment of software interaction. 
-                        Users agree to maintain a setup that complies with these additional directives during the entire usage period. 
-                        Updates to the system or platform may require users to adjust their configurations to stay within these rules. 
-                        The directives here provide clarity on user expectations during various server management or social tasks. 
-                        No claims regarding a lack of awareness of these rules will be considered during conduct reviews. 
-                        Continued interaction with the developer's logic confirms the user's agreement with these secondary standards.
-                    </p>
-                </div>
             `;
-            mainContent.appendChild(card);
-        });
-
-        const footer = document.createElement('footer');
-        footer.id = 'contact';
-        footer.className = 'glass-panel p-12 mt-16 text-center reveal';
-        footer.innerHTML = `
-            <div class="mb-8">
-                <i data-lucide="shield-check" class="w-10 h-10 text-green-400/30 mx-auto mb-5"></i>
-                <h3 class="text-2xl mb-2">Legal information</h3>
-                <p class="text-white/40 max-w-lg mx-auto text-sm">This portal provides clear explanations of software usage and user responsibilities.</p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-5">
-                <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i> Discord contact
-                </a>
-            </div>
-            <p class="mt-10 text-[10px] text-green-400/20 uppercase tracking-[0.2em]">© 2025 Mango legal</p>
-        `;
-        mainContent.appendChild(footer);
-
-        const signature = document.createElement('div');
-        signature.className = 'mt-20 pb-12 text-center reveal';
-        signature.innerHTML = `
-            <p class="text-sm font-light tracking-wide text-white/40 italic">
-                Thanks for being a friend, 
-                <span class="mango-signature ml-1">Written by Mango</span>
-            </p>
-        `;
-        mainContent.appendChild(signature);
-
-        lucide.createIcons();
+            document.getElementById('main-content').appendChild(signature);
+        }
 
         function toggleGroup(groupId, sectionId) {
             const group = document.getElementById(groupId);
@@ -463,12 +581,17 @@
             }
         });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        function observeReveals() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('active'); }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        renderUI();
+        addFooter();
     </script>
 </body>
 </html>
