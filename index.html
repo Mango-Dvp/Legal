@@ -58,6 +58,18 @@
             100% { transform: translate(20vw, 20vh) scale(1.4); }
         }
 
+        /* --- Scroll Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- Glassmorphism Components --- */
         .glass-panel {
             background: var(--glass-bg);
@@ -236,7 +248,7 @@
 
     <div class="max-w-7xl mx-auto px-6 pt-20 pb-12">
         <!-- Header -->
-        <header class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12">
+        <header class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12 reveal">
             <div>
                 <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Mango logo" class="logo-img">
                 <h1 class="hero-title mb-2">Mango legal</h1>
@@ -263,8 +275,8 @@
                     <a href="#sec4" class="nav-item">04. Service description</a>
                     <a href="#sec5" class="nav-item">05. Ownership</a>
                     <a href="#sec6" class="nav-item">06. Rules</a>
-                    <a href="#sec7" class="nav-item">07. Safety for all ages</a>
-                    <a href="#sec8" class="nav-item">08. Data handling</a>
+                    <a href="#sec7" class="nav-item">07. Safety and age requirements</a>
+                    <a href="#sec8" class="nav-item">08. Data handling and scope</a>
                     <a href="#sec9" class="nav-item">09. Responsibility</a>
                     <a href="#sec10" class="nav-item">10. Use of software</a>
                     <a href="#sec11" class="nav-item">11. External changes</a>
@@ -283,13 +295,14 @@
                     <a href="#sec24" class="nav-item">24. Modification of services</a>
                     <a href="#sec25" class="nav-item">25. Data collection scope</a>
                     <a href="#sec26" class="nav-item">26. Security logging</a>
+                    <a href="#sec27" class="nav-item">27. Discord terms compliance</a>
                 </nav>
             </aside>
 
             <!-- Content Area -->
             <main>
                 <!-- Section 01 -->
-                <section id="sec1" class="glass-panel section-card">
+                <section id="sec1" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="info" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">01. Terms of use</h2>
@@ -301,7 +314,7 @@
                 </section>
 
                 <!-- Section 02 -->
-                <section id="sec2" class="glass-panel section-card">
+                <section id="sec2" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="user" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">02. Developer information</h2>
@@ -310,7 +323,7 @@
                 </section>
 
                 <!-- Section 03 -->
-                <section id="sec3" class="glass-panel section-card">
+                <section id="sec3" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="shield" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">03. Security information</h2>
@@ -340,8 +353,7 @@
                     </table>
                 </section>
 
-                <!-- Sections 04 - 07 remain the same for content -->
-                <section id="sec4" class="glass-panel section-card">
+                <section id="sec4" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="box" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">04. Service description</h2>
@@ -349,7 +361,7 @@
                     <p class="text-white/70">The software is provided for community use without any cost to the users. It is a hobby project and does not come with specific service guarantees or support contracts. The features available are subject to change as the project evolves over time. Our goal is to create automated tools that make server management easier for everyone. There is no formal agreement regarding the speed of feature implementation or bug fixing. The service is provided purely for educational and community-oriented purposes.</p>
                 </section>
 
-                <section id="sec5" class="glass-panel section-card">
+                <section id="sec5" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="code" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">05. Ownership</h2>
@@ -357,7 +369,7 @@
                     <p class="text-white/70">Mango owns the code and the specific logic used to build these tools. You are allowed to use the tools as intended for your personal or server needs. However, you do not own the underlying software or the rights to redistribute it. All intellectual property remains the sole property of the developer who created it. Copying large portions of the code without permission is not allowed under these terms. This ownership ensures that the developer can continue to manage the project independently.</p>
                 </section>
 
-                <section id="sec6" class="glass-panel section-card">
+                <section id="sec6" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="check" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">06. Rules</h2>
@@ -391,21 +403,20 @@
                     </table>
                 </section>
 
-                <section id="sec7" class="glass-panel section-card">
+                <section id="sec7" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="smile" class="w-8 h-8 text-green-400/60"></i>
-                        <h2 class="text-3xl font-medium">07. Safety for all ages</h2>
+                        <h2 class="text-3xl font-medium">07. Safety and age requirements</h2>
                     </div>
-                    <p class="text-white/70">The tools are designed to be safe for everyone to use regardless of their age. We do not include any features related to gambling, mature content, or illegal activities. Our priority is to create a clean and healthy environment for all users. The developer avoids any topics that could be considered harmful or inappropriate for minors. We aim to keep our communication and features as simple and helpful as possible. This commitment to safety helps maintain a positive community for all developers and users.</p>
+                    <p class="text-white/70">All users must be at least 13 years of age to access any of our tools or services. There are absolutely no exceptions to this age requirement for any reason. If we discover that a user is under the age of 13, their access will be terminated immediately. This policy is in place to comply with online safety standards and platform regulations. We do not knowingly interact with or collect <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> from individuals who do not meet this age limit. Parents and guardians should monitor the online activities of minors to ensure they are following these guidelines.</p>
                 </section>
 
-                <!-- Section 08 - Enhanced Data Handling -->
-                <section id="sec8" class="glass-panel section-card">
+                <section id="sec8" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="database" class="w-8 h-8 text-green-400/60"></i>
-                        <h2 class="text-3xl font-medium">08. Data handling</h2>
+                        <h2 class="text-3xl font-medium">08. Data handling and scope</h2>
                     </div>
-                    <p class="text-white/70 mb-6">We only store information that is absolutely necessary for the tools to function correctly. This typically includes platform identifiers like user IDs or server IDs to save your settings. We do not collect personal identifying information such as real names or addresses. All <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> is handled with care to ensure user privacy is maintained at all times. <span class="term-highlight" data-definition="Information processed or stored by a computer.">Data</span> is not sold or shared with third-party marketing companies for any reason. We strive to be transparent about what we collect and how it is used.</p>
+                    <p class="text-white/70 mb-6">Our tools collect and process various types of information to provide the requested automation. This includes specific server details such as server roles and user identifiers within the server. We also process information about channels and categories to allow for proper command execution. This <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> is necessary for the bot to understand the structure of the environment it is operating in. We do not use this information for any purpose other than maintaining the functionality of the service. All collected <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> is handled with a focus on privacy and is not shared with outside parties.</p>
                     <table>
                         <thead>
                             <tr>
@@ -434,8 +445,7 @@
                     </table>
                 </section>
 
-                <!-- Section 09 - 24 same content (ensure 6 sentences) -->
-                <section id="sec9" class="glass-panel section-card">
+                <section id="sec9" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="alert-triangle" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">09. Responsibility</h2>
@@ -443,7 +453,7 @@
                     <p class="text-white/70">The developer is not responsible for any issues that occur while using the software. This includes <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> loss, account issues, or any problems with your server. Users accept all risks associated with deploying automated tools in their environments. We do not provide insurance or financial protection against software failures. It is the responsibility of the user to maintain backups of their important information. By using the tool, you acknowledge that no legal claims can be made against the developer.</p>
                 </section>
 
-                <section id="sec10" class="glass-panel section-card">
+                <section id="sec10" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="file-text" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">10. Use of software</h2>
@@ -451,7 +461,7 @@
                     <p class="text-white/70">Users are entirely responsible for how they choose to use the tools. You agree not to hold the developer responsible for actions taken by your server staff. It is important to monitor the bot's activities to ensure it meets your expectations. The developer provides the tool, but the user provides the context and instructions. Any misuse of the tool by a user is the sole responsibility of that individual. Using the software signifies your understanding of these boundaries and responsibilities.</p>
                 </section>
 
-                <section id="sec11" class="glass-panel section-card">
+                <section id="sec11" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="refresh-cw" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">11. External changes</h2>
@@ -459,7 +469,7 @@
                     <p class="text-white/70">Platforms like <span class="term-highlight" data-link="https://discord.com">Discord</span> often update their systems and <span class="term-highlight" data-definition="Application Programming Interface: a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service.">APIs</span> without warning. We are not required to update our tools if an external change causes them to stop working. The developer will attempt to fix issues when possible, but it is not guaranteed. Users should understand that third-party platforms control much of the underlying infrastructure. We are not responsible for delays in updates following a major platform change. This allows the developer to manage the project without the pressure of strict deadlines.</p>
                 </section>
 
-                <section id="sec12" class="glass-panel section-card">
+                <section id="sec12" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="zap" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">12. Uptime and shutdown</h2>
@@ -467,7 +477,7 @@
                     <p class="text-white/70">There is no guarantee that the tools will be online and active 24/7. The service may stop working or turn off at any time without any prior notice to the users. Downtime can last for any period of time, including staying down indefinitely for no specific reason. This may happen because of technical failures, maintenance, or the developer choosing to stop the project. No explanation is required from the developer for why a service has been taken offline. Users should have alternative plans in place for when the service is unavailable for long periods.</p>
                 </section>
 
-                <section id="sec13" class="glass-panel section-card">
+                <section id="sec13" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="message-square" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">13. Problem resolution</h2>
@@ -475,7 +485,7 @@
                     <p class="text-white/70">If you have an issue with the tools, please contact the developer directly through our official <span class="term-highlight" data-link="https://discord.com">Discord</span> channels. Please allow up to 30 days for a response to your inquiries as requests are handled manually. The developer handles all support requests individually and as time permits outside of their school schedule. We ask for your patience as we work through any technical problems or questions you may have. Rude or demanding messages will not result in a faster response time during the resolution process. Clear and respectful communication is the best way to get help with any issues you face.</p>
                 </section>
 
-                <section id="sec14" class="glass-panel section-card">
+                <section id="sec14" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="test-tube" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">14. Beta testing</h2>
@@ -483,7 +493,7 @@
                     <p class="text-white/70">New features might be experimental and are often released for beta testing. These features can be removed or changed at any time based on feedback. Experimental tools may not work perfectly and could contain minor errors or bugs. We encourage users to report any bugs they find during the testing phase. Using beta features is entirely optional and is done at the user's own risk. This process helps the developer improve the software for the entire community over time.</p>
                 </section>
 
-                <section id="sec15" class="glass-panel section-card">
+                <section id="sec15" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="help-circle" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">15. Affiliations</h2>
@@ -491,7 +501,7 @@
                     <p class="text-white/70">This project is not affiliated with or endorsed by <span class="term-highlight" data-link="https://discord.com">Discord</span>, Google, or any other third-party company. We are independent developers who use public <span class="term-highlight" data-definition="Application Programming Interface: a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service.">APIs</span> provided by these platforms. No official partnership exists between Mango and any large tech corporations. The names and logos of other platforms are the property of their respective owners. We do not represent these companies in any way during our development. This independence allows us to build tools that focus on user needs without corporate interference.</p>
                 </section>
 
-                <section id="sec16" class="glass-panel section-card">
+                <section id="sec16" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="lightbulb" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">16. Feedback</h2>
@@ -499,7 +509,7 @@
                     <p class="text-white/70">Suggestions and feedback are welcome from all members of the community. However, providing a suggestion does not grant you ownership of the code created. The developer retains all rights to any features implemented based on user ideas. Feedback helps us understand what features are most important to our users. There is no guarantee that every suggestion will be implemented in the final project. We appreciate the time users take to share their thoughts with us regularly.</p>
                 </section>
 
-                <section id="sec17" class="glass-panel section-card">
+                <section id="sec17" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="user-x" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">17. Misuse of service</h2>
@@ -507,7 +517,7 @@
                     <p class="text-white/70">We reserve the right to stop providing service to anyone who misuses the tools. Misuse includes using the software to harass others or break platform rules. If a user is found to be acting against our community guidelines, their access may be revoked. This action is necessary to protect the reputation and safety of the project. We aim to maintain a high standard of conduct within our user base. Decisions regarding service revocation are made at the sole discretion of the developer.</p>
                 </section>
 
-                <section id="sec18" class="glass-panel section-card">
+                <section id="sec18" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="trash" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">18. Data deletion</h2>
@@ -515,7 +525,7 @@
                     <p class="text-white/70">If you want your <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> removed from our systems, you can request deletion at any time. We will process your request as quickly as possible once it is received. Deletion usually involves removing all identifiers linked to your account or server. Once the <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> is deleted, it cannot be recovered by the user or developer. This ensures that you have full control over the information you have shared with the tools. Please use our <span class="term-highlight" data-link="https://discord.com">Discord</span> contact channels to submit a formal <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> deletion request.</p>
                 </section>
 
-                <section id="sec19" class="glass-panel section-card">
+                <section id="sec19" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="wind" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">19. External events</h2>
@@ -523,7 +533,7 @@
                     <p class="text-white/70">We are not responsible for service interruptions caused by events outside of our control. This includes major network outages, server farm issues, or international internet problems. Such events can prevent the tools from communicating with the platforms they serve. We will attempt to restore service as soon as the external situation allows. Users should be aware that global infrastructure is complex and sometimes unreliable. We ask for your understanding during these uncontrollable and unplanned service interruptions.</p>
                 </section>
 
-                <section id="sec20" class="glass-panel section-card">
+                <section id="sec20" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="book-open" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">20. Full agreement</h2>
@@ -531,7 +541,7 @@
                     <p class="text-white/70">These terms make up the entire agreement between the user and the developer. If one part of these terms is found to be invalid, the rest of the terms still apply. These terms override any previous verbal or written agreements regarding the software. This document is the final word on the rules and expectations for the project. By using the software, you signify your full agreement with every section listed here. Thank you for reading and understanding our terms and framework.</p>
                 </section>
 
-                <section id="sec21" class="glass-panel section-card">
+                <section id="sec21" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="power" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">21. Service suspension</h2>
@@ -539,7 +549,7 @@
                     <p class="text-white/70">The developer has the right to suspend or stop the service permanently at any moment. There is no requirement for notice to be given before a service is deactivated or deleted. This can result in a total loss of access to all tools and their associated <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span>. Once a service is deactivated, there is no responsibility to provide <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> backups to users. This policy is in place so the project can remain a stress-free hobby for the developer. Continued use of the tools means you accept the risk of permanent service removal.</p>
                 </section>
 
-                <section id="sec22" class="glass-panel section-card">
+                <section id="sec22" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="save" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">22. Data preservation</h2>
@@ -547,7 +557,7 @@
                     <p class="text-white/70">Users should not assume that any <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> stored within the tools will be preserved indefinitely. Technical issues or system resets could lead to the complete loss of your saved preferences. The developer is not obligated to restore any <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> that has been lost due to these reasons. It is recommended that you do not store critical information that you cannot afford to lose. We do not offer tools to export or download your <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> for external use. By using the service, you agree that <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> preservation is not a guaranteed feature.</p>
                 </section>
 
-                <section id="sec23" class="glass-panel section-card">
+                <section id="sec23" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="layout" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">23. Usage environment</h2>
@@ -555,7 +565,7 @@
                     <p class="text-white/70">The software is designed for general server management and social interaction within community groups. It is not intended for use in environments where precision and constant availability are required. The developer is not responsible for any impact the tools may have on your server operations. It is up to the user to decide if the tool is suitable for their specific community needs. We do not provide advice on how to integrate the tools into professional or corporate setups. Users must determine the appropriateness of the software for their own use cases.</p>
                 </section>
 
-                <section id="sec24" class="glass-panel section-card">
+                <section id="sec24" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="edit-3" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">24. Modification of services</h2>
@@ -563,8 +573,7 @@
                     <p class="text-white/70">The developer may change how the tools work or remove certain features at any point. These changes are often made to test new coding techniques or to improve system logic. Users might find that certain features they enjoy have been removed without any explanation. Compatibility with previous versions of the tools is not guaranteed after a major update. It is the user's responsibility to adjust their server settings if a feature is modified. These modifications allow the developer to learn and grow through this hobby project.</p>
                 </section>
 
-                <!-- New Protection Sections -->
-                <section id="sec25" class="glass-panel section-card">
+                <section id="sec25" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="eye" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">25. Data collection scope</h2>
@@ -572,7 +581,7 @@
                     <p class="text-white/70">We reserve the right to collect any <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> provided through the use of the tools. This collection is done primarily to ensure the security of the developer and the stability of the platform. By using the software, you acknowledge that any interaction may be logged for safety purposes. This <span class="term-highlight" data-definition="Information processed or stored by a computer.">data</span> may include platform identifiers, usage statistics, and interaction patterns. We use this information to investigate reports of abuse or technical failures. Having a broad scope of collection allows the developer to better defend against malicious activities.</p>
                 </section>
 
-                <section id="sec26" class="glass-panel section-card">
+                <section id="sec26" class="glass-panel section-card reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <i data-lucide="activity" class="w-8 h-8 text-green-400/60"></i>
                         <h2 class="text-3xl font-medium">26. Security logging</h2>
@@ -580,8 +589,16 @@
                     <p class="text-white/70">Every request made to our services is logged with <span class="term-highlight" data-definition="Data that provides information about other data, such as time of access or type of browser used.">metadata</span> for security analysis. This logging is necessary to protect our infrastructure from automated attacks or misuse. We do not look at these logs unless there is a specific technical reason to do so. Logs are stored in a secure environment and are only accessible by the developer. By interacting with the software, you consent to this continuous security monitoring. This practice helps us maintain a reliable service for all of our responsible users.</p>
                 </section>
 
+                <section id="sec27" class="glass-panel section-card reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i data-lucide="shield-x" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">27. Discord terms compliance</h2>
+                    </div>
+                    <p class="text-white/70">Users are required to follow the official terms of service provided by the <span class="term-highlight" data-link="https://discord.com">Discord</span> platform. If a user attempts to use our services to break these rules, they will be banned from our tools. We do not support any activities that violate the community guidelines set by third-party platforms. Any requests to implement features that facilitate platform abuse will be ignored and recorded. We reserve the right to report serious violations directly to the relevant platform safety teams. Maintaining a safe and compliant environment is essential for the continued operation of our volunteer project.</p>
+                </section>
+
                 <!-- Footer -->
-                <footer id="contact" class="glass-panel p-16 mt-16 text-center">
+                <footer id="contact" class="glass-panel p-16 mt-16 text-center reveal">
                     <div class="mb-10">
                         <i data-lucide="shield-check" class="w-12 h-12 text-green-400/30 mx-auto mb-6"></i>
                         <h3 class="text-3xl mb-3">Contact information</h3>
@@ -659,6 +676,21 @@
                 }
             });
         });
+
+        // Scroll Reveal Logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Simple active nav detection
         window.addEventListener('scroll', () => {
