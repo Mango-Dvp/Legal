@@ -178,16 +178,6 @@
             padding: 2.5rem;
         }
 
-        .plain-english-box {
-            background: rgba(74, 222, 128, 0.03);
-            border-left: 2px solid var(--accent-green);
-            padding: 1.25rem;
-            margin: 1.5rem 0;
-            border-radius: 4px 12px 12px 4px;
-            font-size: 0.9rem;
-            color: var(--accent-green);
-        }
-
         .sub-section {
             margin-top: 2rem;
             padding-top: 1.5rem;
@@ -221,7 +211,6 @@
             padding: 4px;
         }
 
-        /* --- Definition Highlights --- */
         .term-highlight {
             color: var(--accent-green);
             text-decoration: underline;
@@ -231,7 +220,6 @@
         }
         .term-highlight:hover { opacity: 0.8; }
 
-        /* --- Tooltip --- */
         #term-tooltip {
             position: absolute;
             z-index: 100;
@@ -297,13 +285,13 @@
             <aside>
                 <nav class="nav-sidebar" id="nav-tree">
                     <h4 class="text-[10px] text-green-400/40 font-bold mb-6 px-4 uppercase tracking-widest">Legal explorer</h4>
-                    <!-- Full list of 32 sections -->
+                    <!-- JS will populate this -->
                 </nav>
             </aside>
 
             <!-- Main Content Area -->
             <main id="main-content">
-                <!-- Sections will be inserted here via Script to ensure consistency and completeness -->
+                <!-- JS will populate this -->
             </main>
         </div>
     </div>
@@ -312,48 +300,45 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Data Structure for all 32 Sections
         const legalData = [
-            { id: "1", title: "Terms of use", icon: "info", subs: ["1.1 Implicit agreement", "1.2 Future updates"] },
-            { id: "2", title: "Developer info", icon: "user", subs: ["2.1 Educational priority", "2.2 Volunteer status"] },
-            { id: "3", title: "Security protocol", icon: "shield", subs: ["3.1 Credential safety", "3.2 Threat reporting"] },
-            { id: "4", title: "Service ethos", icon: "heart", subs: ["4.1 Hobby nature", "4.2 No commercial use"] },
-            { id: "5", title: "Ownership", icon: "code", subs: ["5.1 Logic rights", "5.2 Usage licenses"] },
-            { id: "6", title: "Core rules", icon: "check-circle", subs: ["6.1 Conduct code", "6.2 Resale bans"] },
-            { id: "7", title: "Safety & age", icon: "smile", subs: ["7.1 13+ mandate", "7.2 Enforcement"] },
-            { id: "8", title: "Data handling", icon: "database", subs: ["8.1 Information scope", "8.2 Server details"] },
-            { id: "9", title: "Responsibility", icon: "alert-triangle", subs: ["9.1 Risk assumption", "9.2 No insurance"] },
-            { id: "10", title: "Usage monitor", icon: "activity", subs: ["10.1 User choice", "10.2 Staff liability"] },
-            { id: "11", title: "External changes", icon: "refresh-cw", subs: ["11.1 API volatility", "11.2 Patch latency"] },
-            { id: "12", title: "Uptime policy", icon: "zap", subs: ["12.1 Shutdown rights", "12.2 Downtime period"] },
-            { id: "13", title: "Problem resolution", icon: "message-square", subs: ["13.1 Support response", "13.2 Contact path"] },
-            { id: "14", title: "Beta testing", icon: "test-tube", subs: ["14.1 Alpha risk", "14.2 Feedback flow"] },
-            { id: "15", title: "Affiliations", icon: "help-circle", subs: ["15.1 Independence", "15.2 Trademark use"] },
-            { id: "16", title: "Feedback flow", icon: "lightbulb", subs: ["16.1 Creative input", "16.2 Ownership"] },
-            { id: "17", title: "Misuse policy", icon: "user-x", subs: ["17.1 Abuse killswitch", "17.2 Conduct review"] },
-            { id: "18", title: "Data deletion", icon: "trash", subs: ["18.1 Removal requests", "18.2 Irrecoverability"] },
-            { id: "19", title: "External events", icon: "wind", subs: ["19.1 Network failure", "19.2 Natural disaster"] },
-            { id: "20", title: "Full agreement", icon: "book-open", subs: ["20.1 Integration clause", "20.2 Severability"] },
-            { id: "21", title: "Service suspension", icon: "power", subs: ["21.1 Instant deactivation", "21.2 Stress reduction"] },
-            { id: "22", title: "Data preservation", icon: "save", subs: ["22.1 Backup strategy", "22.2 No exports"] },
-            { id: "23", title: "Usage environment", icon: "layout", subs: ["23.1 Community focus", "23.2 No corporate support"] },
-            { id: "24", title: "Modification", icon: "edit-3", subs: ["24.1 Logic improvement", "24.2 Feature removal"] },
-            { id: "25", title: "Data scope", icon: "eye", subs: ["25.1 Interaction logging", "25.2 Defense strategy"] },
-            { id: "26", title: "Security logging", icon: "activity", subs: ["26.1 Metadata usage", "26.2 Monitor consent"] },
-            { id: "27", title: "Platform rules", icon: "shield-x", subs: ["27.1 Discord terms", "27.2 Abuse reporting"] },
-            { id: "28", title: "Third-party links", icon: "external-link", subs: ["28.1 External control", "28.2 Liability"] },
-            { id: "29", title: "No advice", icon: "scale", subs: ["29.1 Hobby info", "29.2 User choice"] },
-            { id: "30", title: "Creative license", icon: "copyright", subs: ["30.1 Idea rights", "30.2 No royalties"] },
-            { id: "31", title: "High-risk use", icon: "shield-alert", subs: ["31.1 Risk limit", "31.2 Critical tasks"] },
-            { id: "32", title: "Termination", icon: "user-minus", subs: ["32.1 Access removal", "32.2 Data purge"] }
+            { id: "1", title: "Terms of use", icon: "info", subs: ["Implicit agreement", "Future updates"] },
+            { id: "2", title: "Developer info", icon: "user", subs: ["Educational priority", "Volunteer status"] },
+            { id: "3", title: "Security protocol", icon: "shield", subs: ["Credential safety", "Threat reporting"] },
+            { id: "4", title: "Service ethos", icon: "heart", subs: ["Hobby nature", "No commercial use"] },
+            { id: "5", title: "Ownership", icon: "code", subs: ["Logic rights", "Usage licenses"] },
+            { id: "6", title: "Core rules", icon: "check-circle", subs: ["Conduct code", "Resale bans"] },
+            { id: "7", title: "Safety & age", icon: "smile", subs: ["13+ mandate", "Zero exceptions"] },
+            { id: "8", title: "Data handling", icon: "database", subs: ["Information scope", "Server details"] },
+            { id: "9", title: "Responsibility", icon: "alert-triangle", subs: ["Risk assumption", "No insurance"] },
+            { id: "10", title: "Usage monitor", icon: "activity", subs: ["User choice", "Staff liability"] },
+            { id: "11", title: "External changes", icon: "refresh-cw", subs: ["API volatility", "Patch latency"] },
+            { id: "12", title: "Uptime policy", icon: "zap", subs: ["Shutdown rights", "Downtime period"] },
+            { id: "13", title: "Problem resolution", icon: "message-square", subs: ["Support response", "Contact path"] },
+            { id: "14", title: "Beta testing", icon: "test-tube", subs: ["Alpha risk", "Feedback flow"] },
+            { id: "15", title: "Affiliations", icon: "help-circle", subs: ["Independence", "Trademark use"] },
+            { id: "16", title: "Feedback flow", icon: "lightbulb", subs: ["Creative input", "Ownership"] },
+            { id: "17", title: "Misuse policy", icon: "user-x", subs: ["Abuse killswitch", "Conduct review"] },
+            { id: "18", title: "Data deletion", icon: "trash", subs: ["Removal requests", "Irrecoverability"] },
+            { id: "19", title: "External events", icon: "wind", subs: ["Network failure", "Natural disaster"] },
+            { id: "20", title: "Full agreement", icon: "book-open", subs: ["Integration clause", "Severability"] },
+            { id: "21", title: "Service suspension", icon: "power", subs: ["Instant deactivation", "Stress reduction"] },
+            { id: "22", title: "Data preservation", icon: "save", subs: ["Backup strategy", "No exports"] },
+            { id: "23", title: "Usage environment", icon: "layout", subs: ["Community focus", "No corporate support"] },
+            { id: "24", title: "Modification", icon: "edit-3", subs: ["Logic improvement", "Feature removal"] },
+            { id: "25", title: "Data scope", icon: "eye", subs: ["Interaction logging", "Defense strategy"] },
+            { id: "26", title: "Security logging", icon: "activity", subs: ["Metadata usage", "Monitor consent"] },
+            { id: "27", title: "Platform rules", icon: "shield-x", subs: ["Discord terms", "Abuse reporting"] },
+            { id: "28", title: "Third-party links", icon: "external-link", subs: ["External control", "Liability"] },
+            { id: "29", title: "No advice", icon: "scale", subs: ["Hobby info", "User choice"] },
+            { id: "30", title: "Creative license", icon: "copyright", subs: ["Idea rights", "No royalties"] },
+            { id: "31", title: "High-risk use", icon: "shield-alert", subs: ["Risk limit", "Critical tasks"] },
+            { id: "32", title: "Termination", icon: "user-minus", subs: ["Access removal", "Data purge"] }
         ];
 
-        // Generate Content and Sidebar
         const mainContent = document.getElementById('main-content');
         const navTree = document.getElementById('nav-tree');
 
         legalData.forEach(section => {
-            // Sidebar item
             const group = document.createElement('div');
             group.className = 'nav-group';
             group.id = `group-${section.id}`;
@@ -363,12 +348,11 @@
                     ${section.id.padStart(2, '0')}. ${section.title}
                 </button>
                 <div class="nav-sub-list">
-                    ${section.subs.map((sub, i) => `<a href="#sec${section.id}_${i+1}" class="nav-sub-item">${sub}</a>`).join('')}
+                    ${section.subs.map((sub, i) => `<a href="#sec${section.id}_${i+1}" class="nav-sub-item">${section.id}.${i+1} ${sub}</a>`).join('')}
                 </div>
             `;
             navTree.appendChild(group);
 
-            // Content section
             const card = document.createElement('section');
             card.id = `sec${section.id}`;
             card.className = 'glass-panel section-card reveal';
@@ -378,40 +362,39 @@
                     <h2 class="text-2xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
                 </div>
                 <p class="text-white/70">
-                    This section outlines our core policies regarding ${section.title.toLowerCase()}. 
-                    Using any assets produced by Mango constitute a full acceptance of these parameters. 
-                    Every user is expected to read and understand these rules before interacting with the system. 
-                    The developer provides these frameworks to maintain a safe and manageable hobby environment. 
-                    No exceptions are made to these rules regardless of the user's status or history. 
-                    Your compliance ensures that we can keep these tools free and accessible for the community.
+                    Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. 
+                    Users must read and understand all guidelines before interacting with the system or providing any server permissions. 
+                    The terms provided here are standard requirements for all visitors and community managers who utilize these tools. 
+                    No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. 
+                    Compliance with these rules is necessary for the continued availability of the software across all platforms. 
+                    Failure to adhere to these core requirements results in the immediate loss of access to all related services.
                 </p>
                 <div id="sec${section.id}_1" class="sub-section">
-                    <span class="sub-title">${section.subs[0]}</span>
+                    <span class="sub-title">${section.id}.1 ${section.subs[0]}</span>
                     <p class="text-sm text-white/60">
-                        Detailed analysis of ${section.subs[0].toLowerCase()} is provided in this subsection. 
-                        We ensure that every technical and social interaction is covered under this specific header. 
-                        This policy is designed to prevent ambiguity during community server management tasks. 
-                        Users should review this specific protocol carefully to ensure full compliance. 
-                        We prioritize the safety of the developer and the community members through this rule. 
-                        Failure to adhere to this subsection may result in a review of your access permissions.
+                        Usage of the software signifies a formal agreement with the specific terms outlined in this direct rule. 
+                        Invite actions, dashboard logins, or command executions activate the responsibilities of the user as listed here. 
+                        All interactions are subject to the standards defined under this category to ensure community stability. 
+                        Users represent that they have the required authority to engage with the tools for their specific server. 
+                        The logic and functionality provided are tied to the user's continued following of this requirement. 
+                        Direct adherence to this parameter is a prerequisite for any level of interaction with the developer's work.
                     </p>
                 </div>
                 <div id="sec${section.id}_2" class="sub-section">
-                    <span class="sub-title">${section.subs[1]}</span>
+                    <span class="sub-title">${section.id}.2 ${section.subs[1]}</span>
                     <p class="text-sm text-white/60">
-                        Under ${section.subs[1].toLowerCase()}, we provide additional context for the primary section. 
-                        This secondary layer of protection ensures that all edges of the software usage are covered. 
-                        The logic here mirrors our commitment to high-quality and safe community software. 
-                        Users agree that this subsection is binding and active from the moment of first use. 
-                        It serves as a final safeguard for the developer's work and intellectual property. 
-                        We believe in transparency and providing a clear explanation of all requirements.
+                        All secondary requirements listed here are active and binding from the first moment of software interaction. 
+                        Users agree to maintain a setup that complies with these additional directives during the entire usage period. 
+                        Updates to the system or platform may require users to adjust their configurations to stay within these rules. 
+                        The directives here provide clarity on user expectations during various server management or social tasks. 
+                        No claims regarding a lack of awareness of these rules will be considered during conduct reviews. 
+                        Continued interaction with the developer's logic confirms the user's agreement with these secondary standards.
                     </p>
                 </div>
             `;
             mainContent.appendChild(card);
         });
 
-        // Add Footer to Main
         const footer = document.createElement('footer');
         footer.id = 'contact';
         footer.className = 'glass-panel p-12 mt-16 text-center reveal';
@@ -419,7 +402,7 @@
             <div class="mb-8">
                 <i data-lucide="shield-check" class="w-10 h-10 text-green-400/30 mx-auto mb-5"></i>
                 <h3 class="text-2xl mb-2">Legal information</h3>
-                <p class="text-white/40 max-w-lg mx-auto text-sm">This page explains how the tools work and the rules for using them safely.</p>
+                <p class="text-white/40 max-w-lg mx-auto text-sm">This portal provides clear explanations of software usage and user responsibilities.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-5">
                 <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
@@ -442,16 +425,15 @@
 
         lucide.createIcons();
 
-        // Tree Toggle Logic
         function toggleGroup(groupId, sectionId) {
             const group = document.getElementById(groupId);
             const isOpen = group.classList.contains('open');
-            if (!isOpen) { group.classList.add('open'); } else { group.classList.remove('open'); }
+            document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+            if (!isOpen) { group.classList.add('open'); }
             const target = document.querySelector(sectionId);
             if (target) { window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' }); }
         }
 
-        // Interaction and Reveal logic
         const spots = document.querySelectorAll('.glow-spot');
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 30;
@@ -460,6 +442,25 @@
                 const modifier = (index + 1) * 0.4;
                 spot.style.transform = `translate(${x * modifier}px, ${y * modifier}px)`;
             });
+        });
+
+        const tooltip = document.getElementById('term-tooltip');
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('term-highlight')) {
+                e.stopPropagation();
+                const link = e.target.getAttribute('data-link');
+                const definition = e.target.getAttribute('data-definition');
+                if (link) { window.open(link, '_blank'); return; }
+                if (definition) {
+                    tooltip.textContent = definition;
+                    tooltip.style.display = 'block';
+                    const rect = e.target.getBoundingClientRect();
+                    tooltip.style.left = `${rect.left + window.scrollX}px`;
+                    tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                }
+            } else {
+                tooltip.style.display = 'none';
+            }
         });
 
         const observer = new IntersectionObserver((entries) => {
