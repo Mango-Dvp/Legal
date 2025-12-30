@@ -71,6 +71,18 @@
             transform: translateY(0);
         }
 
+        /* --- Sticky Header Fix --- */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(4, 8, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
         /* --- Glassmorphism Components --- */
         .glass-panel {
             background: var(--glass-bg);
@@ -79,7 +91,6 @@
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             position: relative;
-            z-index: 10;
         }
 
         .glass-button {
@@ -107,7 +118,6 @@
         .search-container {
             margin-bottom: 1.5rem;
             position: relative;
-            z-index: 20;
         }
 
         .search-input {
@@ -141,8 +151,8 @@
         /* --- Navigation Sidebar --- */
         .nav-sidebar {
             position: sticky;
-            top: 2rem;
-            max-height: calc(100vh - 6rem);
+            top: 6rem;
+            max-height: calc(100vh - 8rem);
             overflow-y: auto;
             scrollbar-width: none;
             padding-right: 10px;
@@ -175,8 +185,6 @@
         .section-card {
             margin-bottom: 2rem;
             padding: 2.5rem;
-            position: relative;
-            z-index: 5;
         }
 
         .hero-title {
@@ -248,16 +256,16 @@
     <!-- Tooltip Element -->
     <div id="term-tooltip"></div>
 
-    <div class="max-w-7xl mx-auto px-6 pt-20 pb-32">
-        <!-- Header -->
-        <header class="mb-16 flex flex-col md:flex-row md:items-center justify-between gap-8 reveal relative z-50">
+    <!-- Sticky Header -->
+    <div class="sticky-header">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="flex items-center gap-6">
                 <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Mango logo" class="header-logo">
                 <div class="flex flex-col">
                     <h1 class="hero-title leading-none">Mango legal</h1>
                     <div class="flex items-center gap-3 mt-2">
-                        <span class="status-tag">Version 1.4.1</span>
-                        <span class="status-tag">Last Updated December 29 2025</span>
+                        <span class="status-tag">Version 1.5.0</span>
+                        <span class="status-tag text-[10px]">Last Updated December 29 2025</span>
                     </div>
                 </div>
             </div>
@@ -266,11 +274,13 @@
                     <i data-lucide="message-circle" class="w-4 h-4"></i> Support portal
                 </a>
             </div>
-        </header>
+        </div>
+    </div>
 
-        <div class="grid lg:grid-cols-[300px_1fr] gap-12 items-start relative z-20">
+    <div class="max-w-7xl mx-auto px-6 pb-32">
+        <div class="grid lg:grid-cols-[300px_1fr] gap-12 items-start">
             <!-- Sidebar with Search -->
-            <aside class="lg:sticky lg:top-8 z-30">
+            <aside>
                 <div class="search-container">
                     <i data-lucide="search" class="search-icon"></i>
                     <input type="text" id="search-input" placeholder="Search sections..." class="search-input">
@@ -286,11 +296,11 @@
             </aside>
 
             <!-- Main Content Area -->
-            <main id="main-content" class="z-10">
+            <main id="main-content">
                 <div id="no-results" class="glass-panel p-12 text-center hidden reveal active">
                     <i data-lucide="search-x" class="w-12 h-12 text-white/10 mx-auto mb-4"></i>
                     <h3 class="text-xl mb-2">No matching sections found</h3>
-                    <p class="text-white/40">Try searching for keywords like 'data', 'access', or 'security'.</p>
+                    <p class="text-white/40">Try searching for keywords like 'data', 'access', or 'integrity'.</p>
                 </div>
                 <div id="sections-container">
                     <!-- JS populated -->
@@ -335,7 +345,8 @@
             { id: "29", title: "No advice", icon: "scale" },
             { id: "30", title: "Creative license", icon: "copyright" },
             { id: "31", title: "High-risk use", icon: "shield-alert" },
-            { id: "32", title: "Termination", icon: "user-minus" }
+            { id: "32", title: "Termination", icon: "user-minus" },
+            { id: "33", title: "Operational integrity", icon: "check-square" }
         ];
 
         const sectionsContainer = document.getElementById('sections-container');
@@ -366,12 +377,21 @@
                 const card = document.createElement('section');
                 card.id = `sec${section.id}`;
                 card.className = 'glass-panel section-card reveal';
-                card.innerHTML = `
-                    <div class="flex items-center gap-4 mb-6">
-                        <i data-lucide="${section.icon}" class="w-8 h-8 text-green-400/60"></i>
-                        <h2 class="text-3xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
-                    </div>
-                    <p class="text-white/70">
+                
+                let contentBody = "";
+                if (section.id === "33") {
+                    contentBody = `
+                        This section focuses on our commitment to operational integrity and transparency. 
+                        We strictly adhere to the data storage limits disclosed in this document. 
+                        Any request for data deletion that follows our verified process will be honored without delay. 
+                        We avoid making any claims about software safety that cannot be verified by technical inspection. 
+                        No retaliatory actions or harassment will ever be directed toward users from the developer. 
+                        We maintain an open channel of communication for platform safety teams to ensure full compliance. 
+                        Every disclosure regarding the capabilities of the software is based on informational facts.
+                        Cooperation with platform trust and safety departments is a foundational part of our work.
+                    `;
+                } else {
+                    contentBody = `
                         Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. 
                         Users must read and understand all guidelines before interacting with the system or providing any server permissions. 
                         The terms provided here are standard requirements for all visitors and community managers who utilize these tools. 
@@ -382,9 +402,27 @@
                         No physical signature is required to make these terms binding for the user or server staff. 
                         Users represent that they have the required authority to engage with the tools for their specific server community. 
                         Using our logic or architecture signifies that you have reviewed and accepted these guidelines fully. 
-                        We provide these rules publicly so they are accessible to anyone before they use our digital assets. 
-                        Continued interaction with the logic confirms the user's agreement with these primary standards.
-                    </p>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-4 mb-6">
+                        <i data-lucide="${section.icon}" class="w-8 h-8 text-green-400/60"></i>
+                        <h2 class="text-3xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
+                    </div>
+                    <p class="text-white/70">${contentBody}</p>
+                    
+                    <div id="sec${section.id}_1" class="sub-section mt-8 pt-8 border-t border-white/5">
+                        <span class="block text-accent-green font-semibold mb-3">${section.id}.1 Detailed parameters</span>
+                        <p class="text-sm text-white/60">
+                            Direct interaction with the logic and functionality provided confirms the user's agreement with these informational standards. 
+                            Users agree to maintain a setup that complies with these directives during the entire usage period. 
+                            Updates to the platform or system may require users to adjust configurations to remain in compliance. 
+                            No claims regarding a lack of awareness of these specific details will be considered during conduct reviews. 
+                            The developer prioritizes accuracy in all technical and social interactions as defined within this header. 
+                            Honesty in all disclosures is a core requirement for our continued independent project development.
+                        </p>
+                    </div>
                 `;
                 sectionsContainer.appendChild(card);
             });
