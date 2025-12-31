@@ -10,30 +10,28 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Tailwind for Layout Utilities -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --glass-bg: rgba(10, 30, 15, 0.15);
-            --glass-border: rgba(100, 255, 150, 0.1);
-            --glass-blur: blur(28px);
+            --glass-bg: rgba(10, 20, 12, 0.45);
+            --glass-border: rgba(74, 222, 128, 0.08);
+            --glass-blur: blur(24px);
             --accent-green: #4ade80;
             --text-primary: #f0fdf4;
-            --text-secondary: rgba(240, 253, 244, 0.65);
+            --text-secondary: rgba(240, 253, 244, 0.5);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #040805;
+            background-color: #010301;
             color: var(--text-primary);
             overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
+            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        /* --- Background Animation --- */
+        /* --- Refined Background --- */
         .bg-canvas {
             position: fixed;
             top: 0;
@@ -41,43 +39,69 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at top right, #08150a, #040805);
-            overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #061008 0%, #010301 100%);
         }
 
-        .glow-spot {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, transparent 75%);
-            filter: blur(80px);
-            pointer-events: none;
-            animation: drift 35s infinite alternate ease-in-out;
-        }
-
-        @keyframes drift {
-            0% { transform: translate(-10vw, -10vh) scale(1); }
-            100% { transform: translate(20vw, 20vh) scale(1.4); }
-        }
-
-        /* --- Static Status Bar --- */
+        /* --- Navigation & Header --- */
         .status-bar {
-            background: rgba(74, 222, 128, 0.08);
+            background: rgba(74, 222, 128, 0.04);
             border-bottom: 1px solid var(--glass-border);
-            padding: 10px 24px;
+            padding: 8px 24px;
             font-size: 11px;
             color: var(--accent-green);
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 2000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
 
-        /* --- Scroll Animation --- */
+        .header-main {
+            position: sticky;
+            top: 35px;
+            z-index: 1000;
+            background: rgba(1, 3, 1, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Language Toggle --- */
+        .lang-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .lang-btn {
+            padding: 4px 10px;
+            border-radius: 7px;
+            font-size: 10px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-green);
+            color: #010301;
+        }
+
+        /* --- Reveal Animation --- */
         .reveal {
             opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(10px);
+            transition: all 0.5s ease-out;
         }
 
         .reveal.active {
@@ -85,361 +109,323 @@
             transform: translateY(0);
         }
 
-        /* --- Layout --- */
-        .header-container {
-            position: sticky;
-            top: 37px; /* Height of status bar */
-            z-index: 1000;
-            background: rgba(4, 8, 5, 0.9);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1.5rem 0;
-        }
-
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .glass-button {
-            background: rgba(74, 222, 128, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(74, 222, 128, 0.15);
-            border-radius: 12px;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            color: var(--accent-green);
-            font-size: 0.9rem;
-        }
-
-        .glass-button:hover {
-            background: rgba(74, 222, 128, 0.12);
-            border-color: rgba(74, 222, 128, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* --- Search Bar --- */
-        .search-container {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 10px 12px 10px 40px;
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.3);
-            width: 16px;
-            height: 16px;
-        }
-
-        /* --- Sidebar --- */
+        /* --- Custom Sidebar --- */
         .nav-sidebar {
             position: sticky;
-            top: 12rem;
-            max-height: calc(100vh - 14rem);
+            top: 10rem;
+            max-height: calc(100vh - 12rem);
             overflow-y: auto;
             scrollbar-width: none;
-            padding-right: 10px;
         }
         .nav-sidebar::-webkit-scrollbar { display: none; }
 
+        .nav-category {
+            margin-bottom: 2rem;
+        }
+
+        .nav-category-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(74, 222, 128, 0.4);
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
         .nav-item {
-            padding: 8px 12px;
-            border-radius: 8px;
-            color: var(--text-secondary);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            font-size: 0.8rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid transparent;
-            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
             text-align: left;
-            margin-bottom: 4px;
+            width: 100%;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: rgba(74, 222, 128, 0.08);
+        .nav-item:hover {
             color: var(--accent-green);
-            border-color: rgba(74, 222, 128, 0.05);
+            background: rgba(74, 222, 128, 0.06);
         }
 
-        /* --- Content --- */
         .section-card {
-            margin-bottom: 2.5rem;
-            padding: 3rem;
-            scroll-margin-top: 160px;
+            scroll-margin-top: 140px;
+            margin-bottom: 1.5rem;
+            padding: 2.5rem;
         }
 
-        .hero-title {
-            font-size: 3.2rem;
-            font-weight: 600;
-            letter-spacing: -0.04em;
-            background: linear-gradient(180deg, #FFFFFF 0%, #4ade80 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .data-grid {
+            display: grid;
+            grid-template-cols: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .header-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
+        .data-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1rem;
             border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.02);
-            padding: 4px;
-            flex-shrink: 0;
         }
 
-        .mango-signature {
+        .data-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
             color: var(--accent-green);
-            text-shadow: 0 0 15px rgba(74, 222, 128, 0.8);
-            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
-        #term-tooltip {
-            position: absolute;
-            z-index: 3000;
-            display: none;
-            max-width: 250px;
-            padding: 12px;
-            font-size: 0.8rem;
-            background: rgba(10, 20, 10, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: var(--text-primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        .data-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
         }
 
         @media (max-width: 1024px) {
-            .hero-title { font-size: 2.2rem; }
-            .section-card { padding: 1.5rem; }
-            .header-logo { width: 45px; height: 45px; }
             aside { display: none; }
+            .section-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Static Status Bar -->
-    <div class="status-bar">
-        Go to Mango status portal to see site updates, status, and more: <a href="https://dashyweb.online/mango-legal" target="_blank" class="underline">https://dashyweb.online/mango-legal</a>
+    <div class="bg-canvas"></div>
+
+    <!-- Static Info Bar -->
+    <div class="status-bar" id="status-bar-text">
+        <!-- JS Populated -->
     </div>
 
-    <div class="bg-canvas">
-        <div class="glow-spot" style="width: 50vw; height: 50vw; top: -10vh; right: -5vw;"></div>
-        <div class="glow-spot" style="width: 40vw; height: 40vw; bottom: 5vh; left: -10vw; animation-delay: -5s;"></div>
-    </div>
-
-    <div id="term-tooltip"></div>
-
-    <!-- Header -->
-    <header class="header-container">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div class="flex items-center gap-5">
-                <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Mango logo" class="header-logo">
+    <!-- Sticky Header -->
+    <header class="header-main">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Logo" class="w-9 h-9 rounded-lg border border-green-500/20">
                 <div class="flex flex-col">
-                    <h1 class="hero-title leading-none">Mango legal</h1>
-                    <div class="flex flex-wrap items-center gap-3 mt-1">
-                        <span class="bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded text-[10px] text-green-400 font-bold uppercase">v1.0.2</span>
-                        <a href="https://dashyweb.online/mango-legal" target="_blank" class="text-[10px] text-green-400 hover:text-white transition-colors font-medium">Mango status portal</a>
-                        <span class="text-[10px] text-white/30 uppercase tracking-wider">Updated Dec 31 2025</span>
+                    <h1 class="text-xl font-semibold tracking-tight text-white">Mango legal</h1>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[9px] text-green-400 font-bold uppercase tracking-widest opacity-70">Version 1.0.2</span>
+                        <div class="lang-toggle">
+                            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+                            <button onclick="setLanguage('es')" id="btn-es" class="lang-btn">ES</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="flex gap-4">
-                <a href="https://discord.com/users/1373430842407391379" target="_blank" rel="noopener noreferrer" class="glass-button">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i> Support portal
-                </a>
-            </div>
+            <a href="https://discord.com/users/1373430842407391379" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-white/70 hover:text-green-400 transition-all">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span id="support-label">Support portal</span>
+            </a>
         </div>
     </header>
 
     <div class="max-w-7xl mx-auto px-6 pt-12 pb-32">
-        <div class="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
-            <!-- Sidebar -->
-            <aside class="lg:sticky lg:top-48">
-                <div class="search-container">
-                    <i data-lucide="search" class="search-icon"></i>
-                    <input type="text" id="search-input" placeholder="Search parameters..." class="search-input">
+        <div class="grid lg:grid-cols-[260px_1fr] gap-16 items-start">
+            <!-- Organized Sidebar -->
+            <aside>
+                <div class="mb-8 relative">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20"></i>
+                    <input type="text" id="search-input" placeholder="Search..." class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs focus:outline-none focus:border-green-500/30 transition-all">
                 </div>
-                
                 <nav class="nav-sidebar" id="nav-tree">
-                    <h4 class="text-[10px] text-green-400/40 font-bold mb-4 px-3 uppercase tracking-widest">Legal explorer</h4>
-                    <div id="nav-tree-content">
-                        <!-- JS populated -->
-                    </div>
+                    <!-- JS Populated Categories -->
                 </nav>
             </aside>
 
-            <!-- Content Area -->
+            <!-- Organized Content -->
             <main id="main-content">
-                <div id="sections-container">
-                    <!-- JS populated -->
-                </div>
+                <div id="sections-container"></div>
             </main>
         </div>
     </div>
 
     <script>
-        lucide.createIcons();
+        let currentLang = 'en';
 
-        const legalData = [
-            { id: "1", title: "Terms of use", icon: "info" },
-            { id: "2", title: "Developer info", icon: "user" },
-            { id: "3", title: "Security protocol", icon: "shield" },
-            { id: "4", title: "Service ethos", icon: "heart" },
-            { id: "5", title: "Ownership", icon: "code" },
-            { id: "6", title: "Core rules", icon: "check-circle" },
-            { id: "7", title: "Safety & age", icon: "smile" },
-            { id: "8", title: "Data handling", icon: "database" },
-            { id: "9", title: "Responsibility", icon: "alert-triangle" },
-            { id: "10", title: "Usage monitor", icon: "activity" },
-            { id: "11", title: "External changes", icon: "refresh-cw" },
-            { id: "12", title: "Uptime policy", icon: "zap" },
-            { id: "13", title: "Problem resolution", icon: "message-square" },
-            { id: "14", title: "Beta testing", icon: "test-tube" },
-            { id: "15", title: "Affiliations", icon: "help-circle" },
-            { id: "16", title: "Feedback flow", icon: "lightbulb" },
-            { id: "17", title: "Misuse policy", icon: "user-x" },
-            { id: "18", title: "Data deletion", icon: "trash" },
-            { id: "19", title: "External events", icon: "wind" },
-            { id: "20", title: "Full agreement", icon: "book-open" },
-            { id: "21", title: "Service suspension", icon: "power" },
-            { id: "22", title: "Data preservation", icon: "save" },
-            { id: "23", title: "Usage environment", icon: "layout" },
-            { id: "24", title: "Modification", icon: "edit-3" },
-            { id: "25", title: "Data scope", icon: "eye" },
-            { id: "26", title: "Security logging", icon: "activity" },
-            { id: "27", title: "Platform rules", icon: "shield-x" },
-            { id: "28", title: "Third-party links", icon: "external-link" },
-            { id: "29", title: "No advice", icon: "scale" },
-            { id: "30", title: "Creative license", icon: "copyright" },
-            { id: "31", title: "High-risk use", icon: "shield-alert" },
-            { id: "32", title: "Termination", icon: "user-minus" },
-            { id: "33", title: "Operational integrity", icon: "check-square" },
-            { id: "34", title: "Liability limit", icon: "shield-off" },
-            { id: "35", title: "Indirect damages", icon: "trending-down" },
-            { id: "36", title: "System boundaries", icon: "grid" },
-            { id: "37", title: "Platform cooperation", icon: "users" },
-            { id: "38", title: "Truthful reporting", icon: "check" },
-            { id: "39", title: "Verification logic", icon: "fingerprint" },
-            { id: "40", title: "Code integrity", icon: "cpu" }
+        const categories = [
+            { name: "General Terms", range: [1, 5] },
+            { name: "Safety & Privacy", range: [6, 10] },
+            { name: "Service Standards", range: [11, 20] },
+            { name: "Data & Conduct", range: [21, 30] },
+            { name: "Integrity & Legal", range: [31, 40] }
         ];
 
-        function getSectionContent(id) {
-            if (id === "8") {
-                return `Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. Users must read and understand all guidelines before interacting with the system or providing any server permissions. The terms provided here are standard requirements for all visitors and community managers who utilize these tools. No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. Compliance with these rules is necessary for the continued availability of the software across all platforms. Failure to adhere to these core requirements results in the immediate loss of access to all related services. The act of inviting a bot or navigating to a dashboard triggers this agreement automatically. No physical signature is required to make these terms binding for the user or server staff. Users represent that they have the required authority to engage with the tools for their specific server community. Using our logic or architecture signifies that you have reviewed and accepted these guidelines fully. 
-
-                Our systems collect comprehensive Device and system info: CPU, GPU, RAM, storage, OS, browser, IP addresses, network info, logs, etc. Discord-specific info is processed, covering usernames, email addresses, profile pictures, server membership, roles, messages, audit logs, etc. Behavioral/metadata is recorded, including session activity, login timestamps, cookies, interactions with UI, API call logs, etc. Direct interaction with the logic and functionality provided confirms the user's agreement with these informational standards. Users agree to maintain a setup that complies with these directives during the entire usage period. Updates to the platform or system may require users to adjust configurations to remain in compliance. No claims regarding a lack of awareness of these specific details will be considered during conduct reviews. The developer prioritizes accuracy in all technical and social interactions as defined within this header. Honesty in all disclosures is a core requirement for our continued independent project development.`;
+        const translations = {
+            en: {
+                status: "Go to Mango status portal for site updates:",
+                support: "Support portal",
+                search: "Search terms...",
+                footerDesc: "Direct informational context regarding software usage and user responsibilities.",
+                legalInfo: "Legal information",
+                signature: "Thanks for being a friend,",
+                author: "Written by Mango",
+                dataPoints: {
+                    hardware: "Device & System",
+                    hardwareDesc: "CPU, GPU, RAM, storage, OS, browser, IP addresses, network info, logs, etc.",
+                    discord: "Discord-specific",
+                    discordDesc: "Usernames, email, pfp, server membership, roles, messages, audit logs, etc.",
+                    behavior: "Metadata",
+                    behaviorDesc: "Session activity, login timestamps, cookies, UI interactions, API call logs, etc."
+                },
+                titles: [
+                    "Terms of use", "Developer info", "Security protocol", "Service ethos", "Ownership", 
+                    "Core rules", "Safety & age", "Data handling", "Responsibility", "Usage monitor", 
+                    "External changes", "Uptime policy", "Problem resolution", "Beta testing", "Affiliations", 
+                    "Feedback flow", "Misuse policy", "Data deletion", "External events", "Full agreement", 
+                    "Service suspension", "Data preservation", "Usage environment", "Modification", "Data scope", 
+                    "Security logging", "Platform rules", "Third-party links", "No advice", "Creative license", 
+                    "High-risk use", "Termination", "Operational integrity", "Liability limit", "Indirect damages", 
+                    "System boundaries", "Platform cooperation", "Truthful reporting", "Verification logic", "Code integrity"
+                ]
+            },
+            es: {
+                status: "Ve al portal de estado de Mango para actualizaciones:",
+                support: "Portal de soporte",
+                search: "Buscar términos...",
+                footerDesc: "Contexto informativo directo sobre el uso del software y responsabilidades.",
+                legalInfo: "Información legal",
+                signature: "Gracias por ser un amigo,",
+                author: "Escrito por Mango",
+                dataPoints: {
+                    hardware: "Dispositivo y Sistema",
+                    hardwareDesc: "CPU, GPU, RAM, almacenamiento, SO, navegador, IP, red, registros, etc.",
+                    discord: "Info de Discord",
+                    discordDesc: "Nombres, correos, fotos, membresía, roles, mensajes, registros de auditoría.",
+                    behavior: "Metadatos",
+                    behaviorDesc: "Actividad de sesión, marcas de tiempo, cookies, interacción UI, logs de API."
+                },
+                titles: [
+                    "Términos de uso", "Info del desarrollador", "Protocolo de seguridad", "Ethos del servicio", "Propiedad", 
+                    "Reglas principales", "Seguridad y edad", "Manejo de datos", "Responsabilidad", "Monitor de uso", 
+                    "Cambios externos", "Política de disponibilidad", "Resolución de problemas", "Pruebas beta", "Afiliaciones", 
+                    "Flujo de comentarios", "Política de mal uso", "Eliminación de datos", "Eventos externos", "Acuerdo completo", 
+                    "Suspensión del servicio", "Preservación de datos", "Entorno de uso", "Modificación", "Alcance de datos", 
+                    "Registro de seguridad", "Reglas de la plataforma", "Enlaces externos", "Sin asesoramiento", "Licencia creativa", 
+                    "Uso de alto riesgo", "Terminación", "Integridad operativa", "Límite de responsabilidad", "Daños indirectos", 
+                    "Límites del sistema", "Cooperación de plataforma", "Reporte veraz", "Lógica de verificación", "Integridad del código"
+                ]
             }
-            if (id === "12") {
-                return `The developer does not provide any guarantee regarding the constant availability of the software or services. Uptime is managed on a volunteer basis and is subject to external hosting factors and personal availability. Site maintenance and feature updates may cause periodic service interruptions without any prior notice. The tools are provided as a gift to the community and do not come with any professional level support contracts. We are not responsible for any impact caused by downtime within your specific community or server. Direct interaction with the tools implies that you acknowledge the risk of temporary or permanent service suspension. Constant monitoring of service status through the Mango status portal is the sole responsibility of the user. We focus on providing direct, informational context for every interaction performed by the tools.`;
+        };
+
+        const icons = ["info", "user", "shield", "heart", "code", "check-circle", "smile", "database", "alert-triangle", "activity", "refresh-cw", "zap", "message-square", "test-tube", "help-circle", "lightbulb", "user-x", "trash", "wind", "book-open", "power", "save", "layout", "edit-3", "eye", "activity", "shield-x", "external-link", "scale", "copyright", "shield-alert", "user-minus", "check-square", "shield-off", "trending-down", "grid", "users", "check", "fingerprint", "cpu"];
+
+        function getSectionContent(id, lang) {
+            const t = translations[lang];
+            if (id === "8") {
+                const head = lang === 'en' ? 
+                    "Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. Users must read and understand all guidelines before interacting with the system or providing any server permissions. The terms provided here are standard requirements for all visitors and community managers who utilize these tools. No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. Compliance with these rules is necessary for the continued availability of the software across all platforms. Failure to adhere to these core requirements results in the immediate loss of access to all related services. " :
+                    "El acceso o uso de cualquier software producido por Mango constituye una aceptación total y directa de los parámetros aquí enumerados. Los usuarios deben leer y comprender todas las pautas antes de interactuar con el sistema o proporcionar permisos. Estos términos son requisitos estándar para todos los visitantes y gestores de comunidades. No se permiten excepciones ni modificaciones individuales a estos términos, independientemente del historial del usuario. El cumplimiento de estas reglas es necesario para la disponibilidad continua del software. El incumplimiento de estos requisitos básicos resulta en la pérdida inmediata del acceso.";
+                
+                const footer = lang === 'en' ?
+                    "Direct interaction with the logic and functionality provided confirms the user's agreement with these informational standards. Users agree to maintain a setup that complies with these directives during the entire usage period. Updates to the platform or system may require users to adjust configurations to remain in compliance. No claims regarding a lack of awareness of these specific details will be considered during conduct reviews. The developer prioritizes accuracy in all technical and social interactions as defined within this header. Honesty in all disclosures is a core requirement for our continued independent project development." :
+                    "La interacción directa con la lógica y funcionalidad confirma el acuerdo del usuario con estos estándares. Los usuarios aceptan mantener una configuración que cumpla con estas directivas durante todo el uso. Las actualizaciones pueden requerir que los usuarios ajusten sus configuraciones. El desarrollador prioriza la precisión en todas las interacciones técnicas y sociales. La honestidad en todas las divulgaciones es un requisito fundamental para nuestro desarrollo independiente.";
+
+                return `
+                    <p class="mb-4">${head}</p>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <span class="data-label">${t.dataPoints.hardware}</span>
+                            <span class="data-text">${t.dataPoints.hardwareDesc}</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">${t.dataPoints.discord}</span>
+                            <span class="data-text">${t.dataPoints.discordDesc}</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">${t.dataPoints.behavior}</span>
+                            <span class="data-text">${t.dataPoints.behaviorDesc}</span>
+                        </div>
+                    </div>
+                    <p class="mt-6">${footer}</p>
+                `;
             }
             if (id === "33") {
-                return `Operational integrity is maintained through strict adherence to the data storage limits disclosed in this document. Any request for data deletion that follows our verified process will be honored without delay or secondary review. We avoid making any claims about software safety that cannot be verified by technical inspection or factual testing. No retaliatory actions, doxxing, or harassment will ever be directed toward users from the developer. We maintain an open channel of communication for platform safety teams to ensure full legal and platform compliance. Every disclosure regarding the capabilities of the software is based on informational facts and technical reality. Cooperation with platform trust and safety departments is a foundational part of our volunteer work. Ignoring official platform trust and safety requests is strictly prohibited within our internal development cycle.`;
+                return lang === 'en' ?
+                    "Operational integrity is maintained through strict adherence to the data storage limits disclosed in this document. Any request for data deletion that follows our verified process will be honored without delay or secondary review. We avoid making any claims about software safety that cannot be verified by technical inspection or factual testing. No retaliatory actions, doxxing, or harassment will ever be directed toward users from the developer. We maintain an open channel of communication for platform safety teams to ensure full legal and platform compliance. Every disclosure regarding the capabilities of the software is based on informational facts and technical reality. Cooperation with platform trust and safety departments is a foundational part of our volunteer work." :
+                    "La integridad operativa se mantiene mediante el cumplimiento estricto de los límites de almacenamiento de datos. Cualquier solicitud de eliminación de datos se atenderá sin demora siguiendo el proceso verificado. Evitamos afirmaciones sobre seguridad que no puedan verificarse técnicamente. El desarrollador nunca realizará acciones de represalia, doxeo o acoso contra los usuarios. Mantenemos una comunicación abierta con los equipos de seguridad de las plataformas. Cada divulgación sobre las capacidades del software se basa en hechos informativos y realidad técnica. La cooperación con los departamentos de seguridad de la plataforma es fundamental.";
             }
-            // Logic for all other sections to meet 6-sentence requirement
-            return `Direct use of any logic or asset produced by the developer confirms an acceptance of these informational parameters. Users are responsible for reviewing all guidelines prior to establishing server permissions or configuration links. These requirements are standard for all community interactions involving the software provided in this environment. No variations of these rules are granted based on the length of usage or individual server history. Failure to maintain a setup that follows these rules will result in an immediate restriction of service access. Continued interaction with the developer's work signifies an ongoing agreement with these direct and standard responsibilities. We provide these facts to ensure a transparent environment for all community managers and participants. Every server interaction is governed by these standardized informational protocols for consistency.`;
+            
+            return lang === 'en' ? 
+                `Direct use of any logic produced by the developer confirms an acceptance of these informational parameters. Users are responsible for reviewing all guidelines prior to establishing server permissions or configuration links. These requirements are standard for all community interactions involving the software provided in this environment. No variations of these rules are granted based on the length of usage or individual server history. Failure to maintain a setup that follows these rules will result in an immediate restriction of service access. Continued interaction with the developer's work signifies an ongoing agreement with these direct responsibilities.` :
+                `El uso directo de cualquier lógica producida por el desarrollador confirma la aceptación de estos parámetros informativos. Los usuarios son responsables de revisar todas las pautas antes de establecer permisos o enlaces. Estos requisitos son estándar para todas las interacciones de la comunidad que involucran el software. No se otorgan variaciones de estas reglas basadas en la duración del uso o el historial del servidor. No mantener una configuración que siga estas reglas resultará en una restricción inmediata del acceso. La interacción continua significa un acuerdo continuo con estas responsabilidades directas.`;
         }
 
-        const sectionsContainer = document.getElementById('sections-container');
-        const navTreeContent = document.getElementById('nav-tree-content');
-        const searchInput = document.getElementById('search-input');
-        const mainContent = document.getElementById('main-content');
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            renderUI();
+        }
 
         function renderUI() {
-            navTreeContent.innerHTML = '';
+            const t = translations[currentLang];
+            const sectionsContainer = document.getElementById('sections-container');
+            const navTree = document.getElementById('nav-tree');
+
+            document.getElementById('status-bar-text').innerHTML = `${t.status} <a href="https://dashyweb.online/mango-legal" target="_blank" class="underline font-bold">https://dashyweb.online/mango-legal</a>`;
+            document.getElementById('support-label').innerText = t.support;
+            document.getElementById('search-input').placeholder = t.search;
+
+            navTree.innerHTML = '';
             sectionsContainer.innerHTML = '';
 
-            legalData.forEach(section => {
-                const navItem = document.createElement('button');
-                navItem.className = 'nav-item';
-                navItem.innerHTML = `<i data-lucide="${section.icon}" class="w-4 h-4 opacity-50"></i> ${section.id.padStart(2, '0')}. ${section.title}`;
-                navItem.onclick = () => {
-                    const target = document.getElementById(`sec${section.id}`);
-                    target.scrollIntoView({ behavior: 'smooth' });
-                };
-                navTreeContent.appendChild(navItem);
+            categories.forEach(cat => {
+                const group = document.createElement('div');
+                group.className = 'nav-category';
+                group.innerHTML = `<h4 class="nav-category-title">${cat.name}</h4>`;
+                
+                for(let i = cat.range[0]; i <= cat.range[1]; i++) {
+                    const id = i.toString();
+                    const title = t.titles[i-1];
+                    const icon = icons[i-1] || 'info';
 
-                const card = document.createElement('section');
-                card.id = `sec${section.id}`;
-                card.className = 'glass-panel section-card reveal';
-                card.innerHTML = `
-                    <div class="flex items-center gap-4 mb-6">
-                        <i data-lucide="${section.icon}" class="w-8 h-8 text-green-400/60"></i>
-                        <h2 class="text-2xl font-medium">${section.id.padStart(2, '0')}. ${section.title}</h2>
-                    </div>
-                    <p class="text-white/70 whitespace-pre-line text-sm">${getSectionContent(section.id)}</p>
-                `;
-                sectionsContainer.appendChild(card);
+                    const navItem = document.createElement('button');
+                    navItem.className = 'nav-item';
+                    navItem.innerHTML = `<i data-lucide="${icon}" class="w-3.5 h-3.5 opacity-50"></i> ${id.padStart(2, '0')}. ${title}`;
+                    navItem.onclick = () => document.getElementById(`sec${id}`).scrollIntoView({ behavior: 'smooth' });
+                    group.appendChild(navItem);
+
+                    const card = document.createElement('section');
+                    card.id = `sec${id}`;
+                    card.className = 'glass-card section-card reveal';
+                    card.innerHTML = `
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-green-400/5 flex items-center justify-center border border-green-400/10">
+                                <i data-lucide="${icon}" class="w-5 h-5 text-green-400/60"></i>
+                            </div>
+                            <h2 class="text-xl font-medium text-white">${id.padStart(2, '0')}. ${title}</h2>
+                        </div>
+                        <div class="text-sm text-white/50 leading-relaxed">${getSectionContent(id, currentLang)}</div>
+                    `;
+                    sectionsContainer.appendChild(card);
+                }
+                navTree.appendChild(group);
             });
 
-            // Footer
             const footer = document.createElement('footer');
-            footer.className = 'glass-panel p-12 mt-12 text-center reveal';
+            footer.className = 'glass-card p-12 mt-12 text-center';
             footer.innerHTML = `
-                <div class="mb-8">
-                    <i data-lucide="shield-check" class="w-10 h-10 text-green-400/30 mx-auto mb-4"></i>
-                    <h3 class="text-2xl mb-2 font-medium">Legal information</h3>
-                    <p class="text-white/40 max-w-lg mx-auto text-sm mb-4">Direct informational context regarding software usage and user responsibilities.</p>
-                    <a href="https://dashyweb.online/mango-legal" target="_blank" class="text-xs text-accent-green hover:underline">Go to Mango status portal to see site updates, status, and more https://dashyweb.online/mango-legal</a>
-                </div>
-                <p class="text-[10px] text-green-400/20 uppercase tracking-[0.2em]">© 2025 Mango legal</p>
+                <i data-lucide="shield-check" class="w-12 h-12 text-green-400/10 mx-auto mb-6"></i>
+                <h3 class="text-lg font-medium mb-2">${t.legalInfo}</h3>
+                <p class="text-xs text-white/30 mb-8 max-w-sm mx-auto">${t.footerDesc}</p>
+                <p class="text-[9px] text-white/10 uppercase tracking-[0.3em]">© 2025 Mango legal</p>
             `;
-            mainContent.appendChild(footer);
+            sectionsContainer.appendChild(footer);
 
-            // Signature
-            const signature = document.createElement('div');
-            signature.className = 'mt-16 text-center reveal pb-20';
-            signature.innerHTML = `
-                <p class="text-sm font-light tracking-wide text-white/40 italic">
-                    Thanks for being a friend, 
-                    <span class="mango-signature ml-1">Written by Mango</span>
-                </p>
-            `;
-            mainContent.appendChild(signature);
+            const sig = document.createElement('div');
+            sig.className = 'mt-12 text-center pb-20';
+            sig.innerHTML = `<p class="text-xs italic text-white/20">${t.signature} <span class="text-green-400/40 font-medium ml-1">${t.author}</span></p>`;
+            sectionsContainer.appendChild(sig);
 
             lucide.createIcons();
-            observeReveals();
+            setupObserver();
         }
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            document.querySelectorAll('.section-card').forEach((card, i) => {
-                const text = card.innerText.toLowerCase();
-                const match = text.includes(query);
-                card.style.display = match ? 'block' : 'none';
-                if (document.querySelectorAll('.nav-item')[i]) {
-                    document.querySelectorAll('.nav-item')[i].style.display = match ? 'flex' : 'none';
-                }
-            });
-        });
-
-        function observeReveals() {
+        function setupObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('active');
@@ -448,7 +434,17 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        renderUI();
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            document.querySelectorAll('.section-card').forEach((card, i) => {
+                const match = card.innerText.toLowerCase().includes(q);
+                card.style.display = match ? 'block' : 'none';
+                // Adjust sidebar items too
+                document.querySelectorAll('.nav-item')[i].style.display = match ? 'flex' : 'none';
+            });
+        });
+
+        window.onload = renderUI;
     </script>
 </body>
 </html>
