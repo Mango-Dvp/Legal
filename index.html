@@ -3,52 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mango legal | Information and terms</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496">
-    <!-- Lucide Icons -->
+    <title>Mango Legal | Simple Rules</title>
+    <link rel="icon" type="image/png" href="https://ik.imagekit.io/tycncf0zq0/e8dc1138-39fa-4f92-960d-83e7f2a110a6.png?updatedAt=1767067965220">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --glass-bg: rgba(10, 20, 12, 0.45);
-            --glass-border: rgba(74, 222, 128, 0.08);
-            --glass-blur: blur(24px);
-            --accent-green: #4ade80;
-            --text-primary: #f0fdf4;
-            --text-secondary: rgba(240, 253, 244, 0.5);
+            --bg-dark: #010402;
+            --card-bg: rgba(15, 25, 18, 0.65);
+            --border: rgba(74, 222, 128, 0.08);
+            --accent: #4ade80;
+            --text: #f0fdf4;
+            --text-dim: rgba(240, 253, 244, 0.5);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #010301;
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.8;
             scroll-behavior: smooth;
         }
 
-        /* --- Refined Background --- */
-        .bg-canvas {
+        .bg-glow {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 50% 0%, #061008 0%, #010301 100%);
+            background: radial-gradient(circle at 50% 0%, #061208 0%, #010402 100%);
         }
 
-        /* --- Navigation & Header --- */
         .status-bar {
-            background: rgba(74, 222, 128, 0.04);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 8px 24px;
+            background: rgba(74, 222, 128, 0.05);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 24px;
             font-size: 11px;
-            color: var(--accent-green);
+            color: var(--accent);
             text-align: center;
             position: sticky;
             top: 0;
@@ -58,131 +51,85 @@
 
         .header-main {
             position: sticky;
-            top: 35px;
+            top: 41px;
             z-index: 1000;
-            background: rgba(1, 3, 1, 0.8);
+            background: rgba(1, 4, 2, 0.85);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
         }
 
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
         }
 
-        /* --- Language Toggle --- */
-        .lang-toggle {
-            display: flex;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 3px;
-            border-radius: 10px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .lang-btn {
-            padding: 4px 10px;
-            border-radius: 7px;
-            font-size: 10px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            color: var(--text-secondary);
-        }
-
-        .lang-btn.active {
-            background: var(--accent-green);
-            color: #010301;
-        }
-
-        /* --- Reveal Animation --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.5s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Custom Sidebar --- */
         .nav-sidebar {
             position: sticky;
-            top: 10rem;
-            max-height: calc(100vh - 12rem);
+            top: 12rem;
+            max-height: calc(100vh - 15rem);
             overflow-y: auto;
             scrollbar-width: none;
         }
         .nav-sidebar::-webkit-scrollbar { display: none; }
 
-        .nav-category {
-            margin-bottom: 2rem;
-        }
-
-        .nav-category-title {
+        .nav-group-title {
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 1.25rem;
+            padding-left: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(74, 222, 128, 0.4);
-            margin-bottom: 0.75rem;
-            padding-left: 0.5rem;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            color: var(--text-secondary);
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: var(--text-dim);
             transition: all 0.2s ease;
             text-align: left;
             width: 100%;
         }
 
         .nav-item:hover {
-            color: var(--accent-green);
+            color: var(--accent);
             background: rgba(74, 222, 128, 0.06);
         }
 
         .section-card {
-            scroll-margin-top: 140px;
+            scroll-margin-top: 180px;
             margin-bottom: 1.5rem;
-            padding: 2.5rem;
+            padding: 3rem;
         }
 
         .data-grid {
             display: grid;
-            grid-template-cols: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+            grid-template-cols: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
 
-        .data-item {
+        .data-box {
             background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 1rem;
-            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 1.5rem;
+            border-radius: 20px;
         }
 
         .data-label {
             font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--accent-green);
-            margin-bottom: 0.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
             display: block;
-        }
-
-        .data-text {
-            font-size: 12px;
-            color: rgba(255,255,255,0.6);
         }
 
         @media (max-width: 1024px) {
@@ -193,233 +140,150 @@
 </head>
 <body>
 
-    <div class="bg-canvas"></div>
+    <div class="bg-glow"></div>
 
-    <!-- Static Info Bar -->
-    <div class="status-bar" id="status-bar-text">
-        <!-- JS Populated -->
+    <div class="status-bar">
+        go to mango status portal to see site updates and more: <a href="https://dashyweb.online/mango-legal" target="_blank" class="underline font-bold">https://dashyweb.online/mango-legal</a>
     </div>
 
-    <!-- Sticky Header -->
     <header class="header-main">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <img src="https://ik.imagekit.io/tycncf0zq0/Mango%20(3).png?updatedAt=1767042456496" alt="Logo" class="w-9 h-9 rounded-lg border border-green-500/20">
+                <img src="https://ik.imagekit.io/tycncf0zq0/e8dc1138-39fa-4f92-960d-83e7f2a110a6.png?updatedAt=1767067965220" alt="Mango" class="w-10 h-10 rounded-xl border border-green-500/20">
                 <div class="flex flex-col">
-                    <h1 class="text-xl font-semibold tracking-tight text-white">Mango legal</h1>
-                    <div class="flex items-center gap-3">
-                        <span class="text-[9px] text-green-400 font-bold uppercase tracking-widest opacity-70">Version 1.0.2</span>
-                        <div class="lang-toggle">
-                            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
-                            <button onclick="setLanguage('es')" id="btn-es" class="lang-btn">ES</button>
-                        </div>
-                    </div>
+                    <h1 class="text-xl font-bold tracking-tight text-white leading-none">Mango Legal</h1>
+                    <span class="text-[9px] text-green-400 font-bold mt-1 opacity-60">version 1.0.2</span>
                 </div>
             </div>
-            <a href="https://discord.com/users/1373430842407391379" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-white/70 hover:text-green-400 transition-all">
+            <a href="https://discord.com/users/1373430842407391379" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white/70 hover:text-green-400 transition-all">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span id="support-label">Support portal</span>
+                help portal
             </a>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 pt-12 pb-32">
-        <div class="grid lg:grid-cols-[260px_1fr] gap-16 items-start">
-            <!-- Organized Sidebar -->
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-32">
+        <div class="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
             <aside>
-                <div class="mb-8 relative">
-                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20"></i>
-                    <input type="text" id="search-input" placeholder="Search..." class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs focus:outline-none focus:border-green-500/30 transition-all">
+                <div class="mb-10 relative">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20"></i>
+                    <input type="text" id="search-input" placeholder="find rules..." class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-green-500/30 transition-all">
                 </div>
                 <nav class="nav-sidebar" id="nav-tree">
-                    <!-- JS Populated Categories -->
+                    <h4 class="nav-group-title">Rule Book</h4>
+                    <div id="nav-content"></div>
                 </nav>
             </aside>
 
-            <!-- Organized Content -->
-            <main id="main-content">
+            <main>
                 <div id="sections-container"></div>
             </main>
         </div>
     </div>
 
     <script>
-        let currentLang = 'en';
-
-        const categories = [
-            { name: "General Terms", range: [1, 5] },
-            { name: "Safety & Privacy", range: [6, 10] },
-            { name: "Service Standards", range: [11, 20] },
-            { name: "Data & Conduct", range: [21, 30] },
-            { name: "Integrity & Legal", range: [31, 40] }
+        const rules = [
+            { id: "1", title: "Agreement Rules", icon: "check", text: "By using any tool or code made by mango, you agree to follow every single rule written on this page. If you do not agree with even one small part of these rules, you must stop using the tools and leave this site right now. This is a real promise between you and the creator that keeps the community safe and fair for everyone involved." },
+            { id: "2", title: "Creator Identity", icon: "user", text: "I am a professional developer who builds these free tools to help people manage their online groups and learn new skills. All messages sent to the creator or the staff must be polite and professional so that we can have a helpful and friendly space for everyone. I work very hard to make sure everything is safe and works well for all users who join our big community." },
+            { id: "3", title: "Scam Prevention", icon: "shield", text: "We have very strong rules to stop scams and keep your accounts safe from bad people who want to do harm to others. I will never ask you for your private passwords or secret codes or any other sensitive info that belongs to you personally. If someone asks for your info while pretending to be me, please block them and report it to our team in a private message immediately." },
+            { id: "4", title: "Free Service Use", icon: "heart", text: "Everything made here is given to the community for free because I believe in helping people grow and learn together as a team. Even though these tools are free, they are built with very high standards to give you a great experience without any money or cost. I do this as a gift to help community leaders build better spaces for their friends and their members." },
+            { id: "5", title: "Logic Ownership", icon: "code", text: "The code and the way these tools work belong only to mango and cannot be taken or copied or shared without asking first. You are allowed to use the tools as much as you want, but you are not allowed to sell my work or tell people you made it. Keeping the ownership of my code helps me keep the tools free and safe for every single person who uses them." },
+            { id: "6", title: "General Conduct", icon: "alert-circle", text: "You are not allowed to use these tools to hurt others or spam people or try to break the code for any reason at all. If I find out you are being mean or trying to bypass the rules, I will take away your access to the tools forever. I want to keep this a happy place where everyone feels safe and welcome while they use our free services." },
+            { id: "7", title: "Age Restriction", icon: "smile", text: "To use any of our tools, you must be at least 13 years old because I care about the safety of young people on the internet. If you are a server owner, you must make sure everyone using our tools in your group follows this age rule as well. I will close any account that I find is being used by someone who is too young to be here." },
+            { id: "8", title: "Data Handling", icon: "database", text: "DATA_HANDLER" },
+            { id: "9", title: "Risk Acceptance", icon: "alert-triangle", text: "When you use these tools, you agree that you are doing so at your own risk and the creator is not responsible for mistakes. I cannot promise that every single thing will work perfectly every time because the internet is a complex place with many changes. By staying here, you agree not to blame me if a bot stops working or if a server setting changes." },
+            { id: "10", title: "System Watch", icon: "eye", text: "I watch how our systems are working to make sure they do not crash and to keep the service fast and stable for everyone. This watching is only to help me fix bugs and see if the tools are being used correctly without breaking any big rules. I do not look at your private life and I only care about keeping the code healthy and safe." },
+            { id: "11", title: "External Shifts", icon: "refresh-cw", text: "Platforms like discord change their rules and their code often, which might make our tools stop working for a short amount of time. When this happens, I will try to fix the tools as fast as possible, but I am not forced to do it instantly. You agree to be patient and wait for me to update the tools so they work with the new platform rules." },
+            { id: "12", title: "Uptime Standard", icon: "zap", text: "I do not promise that the tools will be online every single second of the day because systems need breaks for updates and fixes. Sometimes the power goes out or the internet has problems that are outside of my control as a developer. You can always check the status portal to see if the tools are working or if they are undergoing maintenance." },
+            { id: "13", title: "Resolving Issues", icon: "message-square", text: "If you have a problem with a rule or a tool, you agree to talk to me nicely in a private message first. We can usually solve most things by talking like adults and being respectful to each other during the whole process. Giving me time to help you is much better than getting angry or leaving mean comments in public spaces." },
+            { id: "14", title: "Experimental Tests", icon: "test-tube", text: "Features that have a test label are experimental and might have bugs that I am still trying to find and fix for the future. You should only use these special features if you are okay with them being a little bit unstable while we work on them. I appreciate your help in testing these new ideas so we can make the tools even better for everyone." },
+            { id: "15", title: "Group Separation", icon: "help-circle", text: "Mango is a separate developer and is not a part of big companies like discord or any other social media platform. I follow their rules to build our tools, but I am my own group and I make my own choices about how to help you. This means I can focus on what our community needs instead of what a big company wants from us." },
+            { id: "16", title: "Idea Ownership", icon: "lightbulb", text: "If you give me a great idea for a new feature, that idea becomes part of the project so I can build it for everyone to enjoy. You will not get paid for your ideas, but you will get the joy of seeing your cool suggestion become a real tool. This helps the whole community grow by sharing the best ideas from all of our smart users." },
+            { id: "17", title: "Abuse Ban", icon: "user-x", text: "I have a zero strike policy, which means if you use my tools to bully someone, you are banned instantly and forever. There are no second chances for people who use my hard work to make other people feel sad or unsafe in any way. I want to be known as a group that stands up for kindness and keeps the internet a better place." },
+            { id: "18", title: "Data Removal", icon: "trash", text: "If you want me to delete all the info I have about you, just ask and I will wipe it from my systems as fast as possible. I respect your right to leave and take your info with you whenever you feel like you are done with our tools. This is part of my promise to give you control over your own digital footprint while you are here." },
+            { id: "19", title: "Uncontrolled Events", icon: "wind", text: "If something massive happens like a huge storm or a global internet crash, I am not responsible if the tools go offline. These big events are outside of anyone's control, and we just have to wait for the world to get back to normal before we fix things. I will always do my best to get things running again once the big problem has been solved." },
+            { id: "20", title: "Final Rules", icon: "book-open", text: "This page is the only set of rules that counts, and anything said in a chat message does not change what is written here. If one rule on this page is found to be wrong by a judge, all the other rules still stay exactly the same. I keep these rules updated to make sure you are always protected and that the project stays safe." },
+            { id: "21", title: "Access Limits", icon: "lock", text: "I have the right to limit who can use our tools at any time if I feel it is necessary to protect the system. This means I can block certain servers or users if they are causing lag or trying to break the way the code works. My goal is to make sure the majority of users have a smooth experience without any lag or errors." },
+            { id: "22", title: "Data Storage", icon: "save", text: "Your data is stored in safe places that only a few trusted systems can access to keep your profile settings working correctly. I use the best methods available to me to make sure no one can steal your information while it is on our servers. By using the bot, you trust me to keep this data safe and use it only for the features you enjoy." },
+            { id: "23", title: "Profit Ban", icon: "briefcase", text: "You are not allowed to use our free tools to make money or run a business without talking to me first. These tools are built for community groups and friends to use for fun, and not for people to profit from my hard work. If I see you selling access to my tools, I will shut down your access without any warning." },
+            { id: "24", title: "Rule Updates", icon: "edit-3", text: "I might change these rules at any time to make them better or to add new protections as the project grows. It is your responsibility to check this page often to see if any rules have changed since the last time you visited. Continuing to use the tools after a rule change means you agree with the new rules completely." },
+            { id: "25", title: "Staff Visibility", icon: "eye", text: "My small team of staff might be able to see some of your server settings to help you fix problems and bugs. I promise to never look at your private messages or anything that is not related to the tools themselves while we help you. I value your privacy, and I only look at what is needed to make the system work for your server." },
+            { id: "26", title: "Audit Logs", icon: "file-text", text: "The system keeps a simple log of commands used so that we can find bugs and see if someone is trying to abuse the code. These logs are deleted every month so that we do not keep unnecessary information about your activity for too long. This is a standard safety feature that helps me keep the entire system running fast and clean." },
+            { id: "27", title: "Third Party Rules", icon: "globe", text: "You must follow all the rules of the platforms we use like discord while you are interacting with our code or staff. Our tools are built to work inside their system, so if you break their rules, you are also breaking our rules too. I work together with these platforms to make sure the internet stays a safe place for everyone." },
+            { id: "28", title: "Outside Links", icon: "external-link", text: "Our tools might show you links to other websites, but I do not own those sites and I am not responsible for them. You should always be careful when clicking links and make sure you trust the site before you give them any info. I only provide links to help you find information, but I cannot control what those other sites do." },
+            { id: "29", title: "No Legal Advice", icon: "scale", text: "Nothing written on this site or said by our staff is professional legal advice, and you should not treat it that way. These are just our rules for using the tools, and if you have a big legal question, you should talk to a real lawyer. I am here to build code and help the community, but I am not a legal professional." },
+            { id: "30", title: "Art Rights", icon: "pen-tool", text: "All the art and logos and designs seen on this site belong to mango, and you cannot use them for your own projects. If you want to use my logo for something, you must ask for permission first so I can make sure it is being used correctly. Respecting my creative rights helps me keep the project looking professional and unique for everyone." },
+            { id: "31", title: "High Risk Ban", icon: "shield-alert", text: "You are not allowed to use our tools for anything dangerous where a mistake could cause someone to get hurt in real life. Our code is built for community management and fun games and should never be used for critical safety or emergency tasks. I am not responsible for anything that happens if you use our tools for something they were not built for." },
+            { id: "32", title: "Ending Access", icon: "user-minus", text: "I have the final say on who can use the tools, and I can end your access at any time for any reason. I usually only do this if someone is breaking the rules or being mean to others, but it is my choice to make. I want to protect my community and my hard work from people who do not want to follow the rules." },
+            { id: "33", title: "System Limits", icon: "activity", text: "There are limits on how many times you can use certain commands to make sure the system does not get overloaded or slow. These limits are there to keep the bot fast for everyone and to make sure one person does not use all the resources. If you try to bypass these limits, you might be temporarily blocked from using the tools." },
+            { id: "34", title: "Indemnity Rule", icon: "shield-check", text: "You agree to protect the creator from any legal trouble that comes from your own actions or the actions of your server. If someone tries to sue me because of something you did with the tools, you will be the one responsible for the cost. This keeps me safe and allows the project to stay free for everyone else to use." },
+            { id: "35", title: "No Promise", icon: "thumbs-down", text: "The tools are provided just as they are, and I do not promise that they will be perfect or never have a single bug. I do my best to make them great, but I do not give any guarantees that they will work for your specific needs every time. By using the tools, you accept that they might have flaws and you agree to use them anyway." },
+            { id: "36", title: "Bug Reporting", icon: "bug", text: "If you find a bug, you must report it to me instead of trying to use it to get an unfair advantage. Being honest about bugs helps me fix them so that everyone can have a better experience while they use our services. Users who help me find and fix bugs are highly valued members of our growing online community." },
+            { id: "37", title: "Safety Help", icon: "users", text: "I work with the safety teams of platforms like discord to make sure our tools are not being used for anything bad. If they ask me for info to stop a crime, I will follow their requests to keep the community safe and legal. I believe in being a good digital citizen and helping the internet stay a healthy space for all users." },
+            { id: "38", title: "Truthful Info", icon: "check-square", text: "You promise that all the info you give to the creator or our staff is true and that you are not trying to trick us. Honesty is very important in our community, and if I find out you lied to get access or to report someone, you will be banned. Staying truthful helps me build a community based on trust and mutual respect between everyone." },
+            { id: "39", title: "Verification Log", icon: "fingerprint", text: "I use special logic to verify who you are when you ask for support to make sure I am talking to the right person. This prevents people from trying to steal your account or change your server settings without your permission. It is a complex part of our code that exists only to keep your data and your community safe." },
+            { id: "40", title: "Code Ethics", icon: "cpu", text: "I follow a strict set of ethics to make sure the code is built in a way that is fair and helpful for everyone. I do not build things that are meant to trick people or to steal their info because I value my reputation. My goal is to create the best possible tools that follow the highest standards of digital ethics and safety." }
         ];
 
-        const translations = {
-            en: {
-                status: "Go to Mango status portal for site updates:",
-                support: "Support portal",
-                search: "Search terms...",
-                footerDesc: "Direct informational context regarding software usage and user responsibilities.",
-                legalInfo: "Legal information",
-                signature: "Thanks for being a friend,",
-                author: "Written by Mango",
-                dataPoints: {
-                    hardware: "Device & System",
-                    hardwareDesc: "CPU, GPU, RAM, storage, OS, browser, IP addresses, network info, logs, etc.",
-                    discord: "Discord-specific",
-                    discordDesc: "Usernames, email, pfp, server membership, roles, messages, audit logs, etc.",
-                    behavior: "Metadata",
-                    behaviorDesc: "Session activity, login timestamps, cookies, UI interactions, API call logs, etc."
-                },
-                titles: [
-                    "Terms of use", "Developer info", "Security protocol", "Service ethos", "Ownership", 
-                    "Core rules", "Safety & age", "Data handling", "Responsibility", "Usage monitor", 
-                    "External changes", "Uptime policy", "Problem resolution", "Beta testing", "Affiliations", 
-                    "Feedback flow", "Misuse policy", "Data deletion", "External events", "Full agreement", 
-                    "Service suspension", "Data preservation", "Usage environment", "Modification", "Data scope", 
-                    "Security logging", "Platform rules", "Third-party links", "No advice", "Creative license", 
-                    "High-risk use", "Termination", "Operational integrity", "Liability limit", "Indirect damages", 
-                    "System boundaries", "Platform cooperation", "Truthful reporting", "Verification logic", "Code integrity"
-                ]
-            },
-            es: {
-                status: "Ve al portal de estado de Mango para actualizaciones:",
-                support: "Portal de soporte",
-                search: "Buscar términos...",
-                footerDesc: "Contexto informativo directo sobre el uso del software y responsabilidades.",
-                legalInfo: "Información legal",
-                signature: "Gracias por ser un amigo,",
-                author: "Escrito por Mango",
-                dataPoints: {
-                    hardware: "Dispositivo y Sistema",
-                    hardwareDesc: "CPU, GPU, RAM, almacenamiento, SO, navegador, IP, red, registros, etc.",
-                    discord: "Info de Discord",
-                    discordDesc: "Nombres, correos, fotos, membresía, roles, mensajes, registros de auditoría.",
-                    behavior: "Metadatos",
-                    behaviorDesc: "Actividad de sesión, marcas de tiempo, cookies, interacción UI, logs de API."
-                },
-                titles: [
-                    "Términos de uso", "Info del desarrollador", "Protocolo de seguridad", "Ethos del servicio", "Propiedad", 
-                    "Reglas principales", "Seguridad y edad", "Manejo de datos", "Responsabilidad", "Monitor de uso", 
-                    "Cambios externos", "Política de disponibilidad", "Resolución de problemas", "Pruebas beta", "Afiliaciones", 
-                    "Flujo de comentarios", "Política de mal uso", "Eliminación de datos", "Eventos externos", "Acuerdo completo", 
-                    "Suspensión del servicio", "Preservación de datos", "Entorno de uso", "Modificación", "Alcance de datos", 
-                    "Registro de seguridad", "Reglas de la plataforma", "Enlaces externos", "Sin asesoramiento", "Licencia creativa", 
-                    "Uso de alto riesgo", "Terminación", "Integridad operativa", "Límite de responsabilidad", "Daños indirectos", 
-                    "Límites del sistema", "Cooperación de plataforma", "Reporte veraz", "Lógica de verificación", "Integridad del código"
-                ]
-            }
-        };
-
-        const icons = ["info", "user", "shield", "heart", "code", "check-circle", "smile", "database", "alert-triangle", "activity", "refresh-cw", "zap", "message-square", "test-tube", "help-circle", "lightbulb", "user-x", "trash", "wind", "book-open", "power", "save", "layout", "edit-3", "eye", "activity", "shield-x", "external-link", "scale", "copyright", "shield-alert", "user-minus", "check-square", "shield-off", "trending-down", "grid", "users", "check", "fingerprint", "cpu"];
-
-        function getSectionContent(id, lang) {
-            const t = translations[lang];
-            if (id === "8") {
-                const head = lang === 'en' ? 
-                    "Accessing or using any software produced by Mango constitutes a full and direct acceptance of the parameters listed here. Users must read and understand all guidelines before interacting with the system or providing any server permissions. The terms provided here are standard requirements for all visitors and community managers who utilize these tools. No exceptions or individual modifications to these terms are permitted regardless of the user's history with the project. Compliance with these rules is necessary for the continued availability of the software across all platforms. Failure to adhere to these core requirements results in the immediate loss of access to all related services. " :
-                    "El acceso o uso de cualquier software producido por Mango constituye una aceptación total y directa de los parámetros aquí enumerados. Los usuarios deben leer y comprender todas las pautas antes de interactuar con el sistema o proporcionar permisos. Estos términos son requisitos estándar para todos los visitantes y gestores de comunidades. No se permiten excepciones ni modificaciones individuales a estos términos, independientemente del historial del usuario. El cumplimiento de estas reglas es necesario para la disponibilidad continua del software. El incumplimiento de estos requisitos básicos resulta en la pérdida inmediata del acceso.";
-                
-                const footer = lang === 'en' ?
-                    "Direct interaction with the logic and functionality provided confirms the user's agreement with these informational standards. Users agree to maintain a setup that complies with these directives during the entire usage period. Updates to the platform or system may require users to adjust configurations to remain in compliance. No claims regarding a lack of awareness of these specific details will be considered during conduct reviews. The developer prioritizes accuracy in all technical and social interactions as defined within this header. Honesty in all disclosures is a core requirement for our continued independent project development." :
-                    "La interacción directa con la lógica y funcionalidad confirma el acuerdo del usuario con estos estándares. Los usuarios aceptan mantener una configuración que cumpla con estas directivas durante todo el uso. Las actualizaciones pueden requerir que los usuarios ajusten sus configuraciones. El desarrollador prioriza la precisión en todas las interacciones técnicas y sociales. La honestidad en todas las divulgaciones es un requisito fundamental para nuestro desarrollo independiente.";
-
-                return `
-                    <p class="mb-4">${head}</p>
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">${t.dataPoints.hardware}</span>
-                            <span class="data-text">${t.dataPoints.hardwareDesc}</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">${t.dataPoints.discord}</span>
-                            <span class="data-text">${t.dataPoints.discordDesc}</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">${t.dataPoints.behavior}</span>
-                            <span class="data-text">${t.dataPoints.behaviorDesc}</span>
-                        </div>
-                    </div>
-                    <p class="mt-6">${footer}</p>
-                `;
-            }
-            if (id === "33") {
-                return lang === 'en' ?
-                    "Operational integrity is maintained through strict adherence to the data storage limits disclosed in this document. Any request for data deletion that follows our verified process will be honored without delay or secondary review. We avoid making any claims about software safety that cannot be verified by technical inspection or factual testing. No retaliatory actions, doxxing, or harassment will ever be directed toward users from the developer. We maintain an open channel of communication for platform safety teams to ensure full legal and platform compliance. Every disclosure regarding the capabilities of the software is based on informational facts and technical reality. Cooperation with platform trust and safety departments is a foundational part of our volunteer work." :
-                    "La integridad operativa se mantiene mediante el cumplimiento estricto de los límites de almacenamiento de datos. Cualquier solicitud de eliminación de datos se atenderá sin demora siguiendo el proceso verificado. Evitamos afirmaciones sobre seguridad que no puedan verificarse técnicamente. El desarrollador nunca realizará acciones de represalia, doxeo o acoso contra los usuarios. Mantenemos una comunicación abierta con los equipos de seguridad de las plataformas. Cada divulgación sobre las capacidades del software se basa en hechos informativos y realidad técnica. La cooperación con los departamentos de seguridad de la plataforma es fundamental.";
-            }
-            
-            return lang === 'en' ? 
-                `Direct use of any logic produced by the developer confirms an acceptance of these informational parameters. Users are responsible for reviewing all guidelines prior to establishing server permissions or configuration links. These requirements are standard for all community interactions involving the software provided in this environment. No variations of these rules are granted based on the length of usage or individual server history. Failure to maintain a setup that follows these rules will result in an immediate restriction of service access. Continued interaction with the developer's work signifies an ongoing agreement with these direct responsibilities.` :
-                `El uso directo de cualquier lógica producida por el desarrollador confirma la aceptación de estos parámetros informativos. Los usuarios son responsables de revisar todas las pautas antes de establecer permisos o enlaces. Estos requisitos son estándar para todas las interacciones de la comunidad que involucran el software. No se otorgan variaciones de estas reglas basadas en la duración del uso o el historial del servidor. No mantener una configuración que siga estas reglas resultará en una restricción inmediata del acceso. La interacción continua significa un acuerdo continuo con estas responsabilidades directas.`;
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
-            renderUI();
-        }
+        const sectionIcons = ["check", "user", "shield", "heart", "code", "alert-circle", "smile", "database", "alert-triangle", "eye", "refresh-cw", "zap", "message-square", "test-tube", "help-circle", "lightbulb", "user-x", "trash", "wind", "book-open", "lock", "save", "briefcase", "edit-3", "eye", "file-text", "globe", "external-link", "scale", "pen-tool", "shield-alert", "user-minus", "activity", "shield-check", "thumbs-down", "bug", "users", "check-square", "fingerprint", "cpu"];
 
         function renderUI() {
-            const t = translations[currentLang];
-            const sectionsContainer = document.getElementById('sections-container');
-            const navTree = document.getElementById('nav-tree');
+            const container = document.getElementById('sections-container');
+            const nav = document.getElementById('nav-content');
+            
+            if (!container || !nav) return;
 
-            document.getElementById('status-bar-text').innerHTML = `${t.status} <a href="https://dashyweb.online/mango-legal" target="_blank" class="underline font-bold">https://dashyweb.online/mango-legal</a>`;
-            document.getElementById('support-label').innerText = t.support;
-            document.getElementById('search-input').placeholder = t.search;
+            nav.innerHTML = '';
+            container.innerHTML = '';
 
-            navTree.innerHTML = '';
-            sectionsContainer.innerHTML = '';
+            rules.forEach((rule, index) => {
+                const icon = sectionIcons[index] || "info";
 
-            categories.forEach(cat => {
-                const group = document.createElement('div');
-                group.className = 'nav-category';
-                group.innerHTML = `<h4 class="nav-category-title">${cat.name}</h4>`;
+                // Sidebar navigation item
+                const navItem = document.createElement('button');
+                navItem.className = 'nav-item';
+                navItem.innerHTML = `<i data-lucide="${icon}" class="w-3.5 h-3.5 opacity-40"></i> ${rule.id.padStart(2, '0')}. ${rule.title}`;
+                navItem.onclick = () => document.getElementById(`sec${rule.id}`).scrollIntoView({ behavior: 'smooth' });
+                nav.appendChild(navItem);
+
+                // Main section card
+                const card = document.createElement('section');
+                card.id = `sec${rule.id}`;
+                card.className = 'glass-card section-card reveal active';
                 
-                for(let i = cat.range[0]; i <= cat.range[1]; i++) {
-                    const id = i.toString();
-                    const title = t.titles[i-1];
-                    const icon = icons[i-1] || 'info';
-
-                    const navItem = document.createElement('button');
-                    navItem.className = 'nav-item';
-                    navItem.innerHTML = `<i data-lucide="${icon}" class="w-3.5 h-3.5 opacity-50"></i> ${id.padStart(2, '0')}. ${title}`;
-                    navItem.onclick = () => document.getElementById(`sec${id}`).scrollIntoView({ behavior: 'smooth' });
-                    group.appendChild(navItem);
-
-                    const card = document.createElement('section');
-                    card.id = `sec${id}`;
-                    card.className = 'glass-card section-card reveal';
-                    card.innerHTML = `
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-10 h-10 rounded-xl bg-green-400/5 flex items-center justify-center border border-green-400/10">
-                                <i data-lucide="${icon}" class="w-5 h-5 text-green-400/60"></i>
+                let body = `<p class="text-sm text-white/50">${rule.text}</p>`;
+                if (rule.id === "8") {
+                    body = `
+                        <p class="text-sm text-white/50">I only keep what is needed to remember your personal settings, and I never sell your information to anyone for any reason ever. Accessing our software means you accept that I process the technical details listed below about your device and your account to provide you with the best features. I reserve the right to hold and use this information for many internal reasons, such as managing your access or banning your account if you break the rules. While I keep your data private and do not share it with outside parties, it remains under my control to ensure the safety and health of the entire system.</p>
+                        <div class="data-grid">
+                            <div class="data-box">
+                                <span class="data-label">device and system info</span>
+                                <p class="data-list">cpu, gpu, ram, storage, os, browser, ip addresses, network info, logs, and more.</p>
                             </div>
-                            <h2 class="text-xl font-medium text-white">${id.padStart(2, '0')}. ${title}</h2>
+                            <div class="data-box">
+                                <span class="data-label">discord-specific info</span>
+                                <p class="data-list">usernames, email addresses, profile pictures, server membership, roles, messages, audit logs, and more.</p>
+                            </div>
+                            <div class="data-box">
+                                <span class="data-label">behavioral and metadata</span>
+                                <p class="data-list">session activity, login timestamps, cookies, interactions with ui, api call logs, and more.</p>
+                            </div>
                         </div>
-                        <div class="text-sm text-white/50 leading-relaxed">${getSectionContent(id, currentLang)}</div>
+                        <p class="text-sm text-white/50 mt-8">Using our logic means you agree with these technical standards, and you promise to keep your server setup matching these rules at all times. Honesty in how you use these tools is a main requirement for me to keep building and hosting this project for the entire community. I reserve the right to audit your usage to make sure you are following these guidelines and keeping the system safe for others.</p>
                     `;
-                    sectionsContainer.appendChild(card);
                 }
-                navTree.appendChild(group);
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-12 h-12 rounded-2xl bg-green-400/5 flex items-center justify-center border border-green-400/10">
+                            <i data-lucide="${icon}" class="w-6 h-6 text-green-400/60"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">${rule.id.padStart(2, '0')}. ${rule.title}</h2>
+                    </div>
+                    ${body}
+                `;
+                container.appendChild(card);
             });
-
-            const footer = document.createElement('footer');
-            footer.className = 'glass-card p-12 mt-12 text-center';
-            footer.innerHTML = `
-                <i data-lucide="shield-check" class="w-12 h-12 text-green-400/10 mx-auto mb-6"></i>
-                <h3 class="text-lg font-medium mb-2">${t.legalInfo}</h3>
-                <p class="text-xs text-white/30 mb-8 max-w-sm mx-auto">${t.footerDesc}</p>
-                <p class="text-[9px] text-white/10 uppercase tracking-[0.3em]">© 2025 Mango legal</p>
-            `;
-            sectionsContainer.appendChild(footer);
-
-            const sig = document.createElement('div');
-            sig.className = 'mt-12 text-center pb-20';
-            sig.innerHTML = `<p class="text-xs italic text-white/20">${t.signature} <span class="text-green-400/40 font-medium ml-1">${t.author}</span></p>`;
-            sectionsContainer.appendChild(sig);
 
             lucide.createIcons();
             setupObserver();
@@ -439,8 +303,10 @@
             document.querySelectorAll('.section-card').forEach((card, i) => {
                 const match = card.innerText.toLowerCase().includes(q);
                 card.style.display = match ? 'block' : 'none';
-                // Adjust sidebar items too
-                document.querySelectorAll('.nav-item')[i].style.display = match ? 'flex' : 'none';
+                const navItems = document.querySelectorAll('.nav-item');
+                if (navItems[i]) {
+                    navItems[i].style.display = match ? 'flex' : 'none';
+                }
             });
         });
 
